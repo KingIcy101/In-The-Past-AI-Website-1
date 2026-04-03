@@ -21,9 +21,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "In The Past | AI Receptionists That Never Sleep",
+  title: "In The Past AI | AI Receptionists That Never Sleep",
   description:
     "24/7 AI receptionists that answer calls, book appointments, and capture leads. Voice agents, website chatbots, and internal automation — built for businesses that run on calls.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
