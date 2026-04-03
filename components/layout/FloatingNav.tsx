@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const DEMO_URL = "https://intake-form-sigma.vercel.app";
 
@@ -49,7 +50,7 @@ export default function FloatingNav() {
 
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 flex-shrink-0">
-              <HourglassMark size={22} />
+              <Image src="/logo.png" alt="In The Past AI" width={36} height={36} className="object-contain" />
               <div className="flex flex-col leading-none">
                 <span
                   className="text-base font-bold tracking-tight"
