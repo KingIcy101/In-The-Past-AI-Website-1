@@ -6,20 +6,35 @@ import { motion } from "framer-motion";
 // Simulates a live "missed calls" counter — increments at random paces
 function useLiveCount() {
   const [count, setCount] = useState(0);
+  const [phase, setPhase] = useState<"burst" | "normal">("burst");
+
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
+
+    // Burst phase: first 3 seconds — rapid increments to show it's alive
+    const burstEnd = Date.now() + 3000;
+
     const tick = () => {
-      // Random increment: 1 jump most of the time, occasionally 2-3
-      const jump = Math.random() < 0.15 ? Math.floor(Math.random() * 2) + 2 : 1;
-      setCount((c) => c + jump);
-      // Random delay: fast bursts (200-600ms) and slow pauses (1200-3000ms)
-      const fast = Math.random() < 0.4;
-      const delay = fast
-        ? 200 + Math.random() * 400
-        : 1200 + Math.random() * 1800;
-      timeout = setTimeout(tick, delay);
+      const isBurst = Date.now() < burstEnd;
+      if (isBurst) {
+        // Burst: jump 2-5 every 80-180ms
+        const jump = Math.floor(Math.random() * 4) + 2;
+        setCount((c) => c + jump);
+        timeout = setTimeout(tick, 80 + Math.random() * 100);
+      } else {
+        setPhase("normal");
+        // Normal: 1 jump most of the time, occasionally 2-3
+        const jump = Math.random() < 0.15 ? Math.floor(Math.random() * 2) + 2 : 1;
+        setCount((c) => c + jump);
+        const fast = Math.random() < 0.4;
+        const delay = fast
+          ? 200 + Math.random() * 400
+          : 1200 + Math.random() * 1800;
+        timeout = setTimeout(tick, delay);
+      }
     };
-    timeout = setTimeout(tick, 800 + Math.random() * 1200);
+
+    timeout = setTimeout(tick, 200); // Start almost immediately
     return () => clearTimeout(timeout);
   }, []);
   return count;
