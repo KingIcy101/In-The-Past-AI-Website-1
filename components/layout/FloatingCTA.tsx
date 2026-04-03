@@ -114,10 +114,11 @@ export default function FloatingCTA() {
             onClick={() => setExpanded(!expanded)}
             className="rounded-full flex items-center justify-center cursor-pointer relative"
             style={{
-              width: 52,
-              height: 52,
-              background: "linear-gradient(135deg, #f09040, #c05818, #8a3c14)",
-              boxShadow: "0 4px 24px rgba(224,136,60,0.38)",
+              width: 62,
+              height: 62,
+              background: "#0E0B08",
+              border: "1px solid rgba(224,136,60,0.25)",
+              boxShadow: "0 0 0 1px rgba(224,136,60,0.12), 0 0 20px rgba(224,136,60,0.35), 0 0 40px rgba(224,136,60,0.15), 0 8px 32px rgba(0,0,0,0.5)",
             }}
           >
             <AnimatePresence mode="wait">
@@ -128,7 +129,7 @@ export default function FloatingCTA() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.18 }}
               >
-                {expanded ? <IconClose size={18} color="#0a0704" /> : <Image src="/logo.png" alt="In The Past AI" width={28} height={28} className="object-contain" />}
+                {expanded ? <IconClose size={18} color="#e0883c" /> : <Image src="/logo.png" alt="In The Past AI" width={36} height={36} className="object-contain" />}
               </motion.span>
             </AnimatePresence>
           </motion.button>
