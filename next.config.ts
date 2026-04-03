@@ -22,6 +22,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob:",
       "frame-ancestors 'none'",
+      "frame-src https://cal.com https://*.cal.com",
     ].join("; "),
   },
 ];
