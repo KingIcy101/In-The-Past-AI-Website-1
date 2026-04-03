@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconCalendar, IconChat, IconLightning, IconClose, IconHourglass } from "@/components/ui/Icons";
+import Image from "next/image";
 
 const INTAKE_URL = "https://intake-form-sigma.vercel.app";
 
@@ -127,7 +128,7 @@ export default function FloatingCTA() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.18 }}
               >
-                {expanded ? <IconClose size={18} color="#0a0704" /> : <IconHourglass size={20} color="#0a0704" />}
+                {expanded ? <IconClose size={18} color="#0a0704" /> : <Image src="/logo.png" alt="In The Past AI" width={28} height={28} className="object-contain" />}
               </motion.span>
             </AnimatePresence>
           </motion.button>

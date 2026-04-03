@@ -50,7 +50,7 @@ export default function FloatingNav() {
 
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 flex-shrink-0">
-              <Image src="/logo.png" alt="In The Past AI" width={36} height={36} className="object-contain" />
+              <Image src="/logo.png" alt="In The Past AI" width={44} height={44} className="object-contain" />
               <div className="flex flex-col leading-none">
                 <span
                   className="text-base font-bold tracking-tight"
