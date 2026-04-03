@@ -72,14 +72,14 @@ function VoicePanel() {
       <div className="flex items-center gap-4">
         <div className="relative">
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center"
+            className="w-20 h-20 rounded-2xl flex items-center justify-center"
             style={{
               background: "linear-gradient(135deg, rgba(224,136,60,0.18), rgba(224,136,60,0.05))",
               border: "1px solid rgba(224,136,60,0.3)",
               boxShadow: "0 0 20px rgba(224,136,60,0.08)",
             }}
           >
-            <IconRobot size={28} />
+            <IconRobot size={36} />
           </div>
           <div
             className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full flex items-center justify-center"

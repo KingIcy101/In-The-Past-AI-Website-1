@@ -37,7 +37,6 @@ export function IconRobot({ size = 32, color, opacity }: IconProps) {
       <circle cx="16" cy="7" r="1.5" {...s} />
       <circle cx="11" cy="19" r="2" {...s} />
       <circle cx="21" cy="19" r="2" {...s} />
-      <path d="M13 23h6" {...s} />
       <path d="M3 17h3M26 17h3" {...s} />
     </svg>
   );
