@@ -1,20 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { IconCheck } from "@/components/ui/Icons";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ScrollReveal3D from "@/components/ui/ScrollReveal3D";
-import CalModal from "@/components/ui/CalModal";
+import { useCalModal } from "@/contexts/CalModalContext";
 
 export default function FinalCTA() {
-  const [calOpen, setCalOpen] = useState(false);
+  const { open: openCal } = useCalModal();
 
   return (
-    <>
-      <CalModal isOpen={calOpen} onClose={() => setCalOpen(false)} />
-
-      <section
+    <section
         className="relative py-36 px-6 overflow-hidden"
         style={{ background: "#0a0704" }}
       >
@@ -88,7 +84,7 @@ export default function FinalCTA() {
             {/* Primary — magnetic + shine */}
             <MagneticButton>
               <button
-                onClick={() => setCalOpen(true)}
+                onClick={openCal}
                 className="btn-shine px-7 py-4 rounded-full text-sm font-semibold cursor-pointer inline-block"
                 style={{
                   background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
@@ -107,7 +103,7 @@ export default function FinalCTA() {
             ].map((btn) => (
               <button
                 key={btn.label}
-                onClick={() => setCalOpen(true)}
+                onClick={openCal}
                 className="px-7 py-4 rounded-full text-sm font-semibold cursor-pointer transition-all duration-200 inline-block"
                 style={{
                   background: "rgba(224,136,60,0.07)",
@@ -146,6 +142,5 @@ export default function FinalCTA() {
           </p>
         </div>
       </section>
-    </>
   );
 }

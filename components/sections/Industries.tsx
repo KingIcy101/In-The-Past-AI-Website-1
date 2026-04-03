@@ -1,5 +1,7 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { IconTooth, IconScales, IconMedicalCross, IconHomeWrench, IconBuilding, IconCar } from "@/components/ui/Icons";
@@ -226,6 +228,7 @@ function FlipCard({ ind, index }: { ind: typeof industries[0]; index: number }) 
 }
 
 export default function Industries() {
+  const { open: openCal } = useCalModal();
   return (
     <section id="industries" className="py-28" style={{ background: "#0a0704" }}>
       <div className="max-w-6xl mx-auto px-6">
@@ -276,10 +279,8 @@ export default function Industries() {
               Don&apos;t see yours above? We&apos;ve built for dozens of verticals. If your business runs on calls, we can automate it.
             </p>
           </div>
-          <a
-            href="https://intake-form-sigma.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => openCal()}
             className="flex-shrink-0 inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold transition-all duration-200 whitespace-nowrap"
             style={{
               background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
@@ -288,7 +289,7 @@ export default function Industries() {
             }}
           >
             Schedule a Call →
-          </a>
+          </button>
         </div>
       </div>
     </section>

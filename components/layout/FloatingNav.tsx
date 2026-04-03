@@ -1,10 +1,9 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-
-const DEMO_URL = "https://intake-form-sigma.vercel.app";
 
 const links = [
   { label: "Services",   href: "#services" },
@@ -14,6 +13,7 @@ const links = [
 ];
 
 export default function FloatingNav() {
+  const { open: openCal } = useCalModal();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -91,10 +91,7 @@ export default function FloatingNav() {
 
             {/* Right: CTA */}
             <div className="flex items-center gap-3">
-              <a
-                href={DEMO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button type="button" onClick={() => openCal()}
                 className="btn-shine nav-cta-glow hidden xs:inline-flex sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-transform duration-200 relative overflow-hidden"
                 style={{
                   background: "linear-gradient(135deg, #f5aa60, #e07830, #b05020)",
@@ -108,7 +105,7 @@ export default function FloatingNav() {
                 }}
               >
                 Book a Discovery Call <span style={{ opacity: 0.75 }}>→</span>
-              </a>
+              </button>
 
               {/* Mobile toggle */}
               <button
@@ -151,10 +148,7 @@ export default function FloatingNav() {
                     {l.label}
                   </button>
                 ))}
-                <a
-                  href={DEMO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button type="button" onClick={() => openCal()}
                   className="btn-shine nav-cta-glow mt-2 px-4 py-3 rounded-xl text-sm font-semibold text-center cursor-pointer"
                   style={{
                     background: "linear-gradient(135deg, #f5aa60, #e07830, #b05020)",
@@ -162,7 +156,7 @@ export default function FloatingNav() {
                   }}
                 >
                   Book a Discovery Call
-                </a>
+                </button>
               </div>
             </motion.div>
           )}

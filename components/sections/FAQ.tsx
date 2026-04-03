@@ -1,10 +1,9 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal3D from "@/components/ui/ScrollReveal3D";
-
-const DEMO_URL = "https://intake-form-sigma.vercel.app";
 
 const faqs = [
   {
@@ -93,6 +92,7 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
 }
 
 export default function FAQ() {
+  const { open: openCal } = useCalModal();
   return (
     <section id="faq" className="py-28 px-6" style={{ background: "#080503" }}>
       <div className="max-w-3xl mx-auto">
@@ -126,15 +126,12 @@ export default function FAQ() {
         >
           <p className="text-sm" style={{ color: "#f2ece0" }}>
             Still have questions?{" "}
-            <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button type="button" onClick={() => openCal()}
               className="underline transition-colors"
               style={{ color: "#e0883c" }}
             >
               Talk to our team →
-            </a>
+            </button>
           </p>
         </motion.div>
       </div>

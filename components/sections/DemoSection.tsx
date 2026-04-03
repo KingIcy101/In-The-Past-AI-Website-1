@@ -1,5 +1,7 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
+
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Vapi from "@vapi-ai/web";
@@ -487,6 +489,7 @@ const panels = [
 ];
 
 export default function DemoSection() {
+  const { open: openCal } = useCalModal();
   const [active, setActive] = useState("voice");
   const activePanel = panels.find((p) => p.id === active)!;
   const Panel = activePanel.component;
@@ -526,10 +529,8 @@ export default function DemoSection() {
               </button>
             ))}
             <div className="hidden lg:block mt-auto pt-8">
-              <a
-                href={DEMO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => openCal()}
                 className="block text-xs text-center px-4 py-3 rounded-xl cursor-pointer transition-all"
                 style={{
                   background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
@@ -538,7 +539,7 @@ export default function DemoSection() {
                 }}
               >
                 Book Live Demo →
-              </a>
+              </button>
             </div>
           </div>
 
@@ -563,15 +564,13 @@ export default function DemoSection() {
         </div>
 
         <div className="lg:hidden mt-6 text-center">
-          <a
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => openCal()}
             className="inline-block px-8 py-3.5 rounded-full text-sm font-semibold cursor-pointer"
             style={{ background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)", color: "#0a0704" }}
           >
             Book a Live Demo →
-          </a>
+          </button>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
 import { motion } from "framer-motion";
 import {
   IconPhone, IconLightning, IconTarget, IconCalendar,
@@ -8,8 +9,6 @@ import {
 } from "@/components/ui/Icons";
 import TiltCard from "@/components/ui/TiltCard";
 import ScrollReveal3D from "@/components/ui/ScrollReveal3D";
-
-const DEMO_URL = "https://intake-form-sigma.vercel.app";
 
 const primaryFeatures = [
   { Icon: IconLightning, label: "Answers in under 4 seconds" },
@@ -36,6 +35,7 @@ const secondary = [
 ];
 
 export default function WhatWeBuild() {
+  const { open: openCal } = useCalModal();
   return (
     <section id="services" className="py-28 px-6" style={{ background: "#080503" }}>
       <div className="max-w-6xl mx-auto">
@@ -109,10 +109,7 @@ export default function WhatWeBuild() {
                 <p className="text-base leading-relaxed mb-6" style={{ color: "#f2ece0" }}>
                   24/7 AI phone agents that answer every call, qualify leads, book appointments, and follow up — indistinguishable from a real receptionist.
                 </p>
-                <a
-                  href={DEMO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button type="button" onClick={() => openCal()}
                   className="inline-flex items-center gap-2 text-sm font-semibold"
                   style={{ color: "#e0883c" }}
                 >
@@ -120,7 +117,7 @@ export default function WhatWeBuild() {
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2 7h10M8 4l4 3-4 3" stroke="#e0883c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
+                </button>
               </div>
 
               <div className="space-y-3">

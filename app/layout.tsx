@@ -7,6 +7,7 @@ import VoiceWidget from "@/components/layout/VoiceWidget";
 import CustomCursor from "@/components/ui/CustomCursor";
 import AuraBackground from "@/components/ui/AuraBackground";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import { CalModalProvider } from "@/contexts/CalModalContext";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-display",
@@ -36,13 +37,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakarta.variable} ${inter.variable}`}>
       <body>
-        <ScrollProgress />
-        <AuraBackground />
-        <CustomCursor />
-        <FloatingNav />
-        <main>{children}</main>
-        <FloatingCTA />
-        <VoiceWidget />
+        <CalModalProvider>
+          <ScrollProgress />
+          <AuraBackground />
+          <CustomCursor />
+          <FloatingNav />
+          <main>{children}</main>
+          <FloatingCTA />
+          <VoiceWidget />
+        </CalModalProvider>
       </body>
     </html>
   );

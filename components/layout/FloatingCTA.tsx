@@ -1,39 +1,40 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconCalendar, IconChat, IconLightning, IconClose, IconHourglass } from "@/components/ui/Icons";
 import Image from "next/image";
 
-const INTAKE_URL = "https://intake-form-sigma.vercel.app";
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
-const ITEMS = [
-  {
-    label: "Book a Discovery Call",
-    sub: "See if it's right for your business",
-    Icon: IconCalendar,
-    action: () => window.open(INTAKE_URL, "_blank"),
-  },
-  {
-    label: "Hear Vera Live",
-    sub: "Talk to an AI receptionist right now",
-    Icon: IconChat,
-    action: () => scrollTo("demo"),
-  },
-  {
-    label: "How It Works",
-    sub: "Setup takes less than a week",
-    Icon: IconLightning,
-    action: () => scrollTo("how-it-works"),
-  },
-];
-
 export default function FloatingCTA() {
+  const { open: openCal } = useCalModal();
+  const ITEMS = [
+    {
+      label: "Book a Discovery Call",
+      sub: "See if it's right for your business",
+      Icon: IconCalendar,
+      action: openCal,
+    },
+    {
+      label: "Hear Vera Live",
+      sub: "Talk to an AI receptionist right now",
+      Icon: IconChat,
+      action: () => scrollTo("demo"),
+    },
+    {
+      label: "How It Works",
+      sub: "Setup takes less than a week",
+      Icon: IconLightning,
+      action: () => scrollTo("how-it-works"),
+    },
+  ];
   const [show, setShow] = useState(false);
   const [expanded, setExpanded] = useState(false);
 

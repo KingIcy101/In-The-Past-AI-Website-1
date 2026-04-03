@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { IconRobot, IconPhone, IconPlay } from "@/components/ui/Icons";
-import CalModal from "@/components/ui/CalModal";
+import { useCalModal } from "@/contexts/CalModalContext";
 
 
 const words = ["Call.", "Lead.", "Booking.", "Opportunity."];
@@ -339,7 +339,7 @@ function TypewriterWord() {
 }
 
 export default function Hero() {
-  const [calOpen, setCalOpen] = useState(false);
+  const { open: openCal } = useCalModal();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -351,9 +351,7 @@ export default function Hero() {
   const phoneScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
 
   return (
-    <>
-      <CalModal isOpen={calOpen} onClose={() => setCalOpen(false)} />
-      <section
+    <section
         ref={sectionRef}
         className="relative min-h-screen flex items-center overflow-hidden"
         style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(224,136,60,0.08) 0%, #0a0704 60%)" }}
@@ -418,7 +416,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row flex-wrap gap-3"
             >
               <button
-                onClick={() => setCalOpen(true)}
+                onClick={openCal}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer w-full sm:w-auto"
                 style={{
                   background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
@@ -512,6 +510,5 @@ export default function Hero() {
         </motion.div>
       </div>
     </section>
-    </>
   );
 }

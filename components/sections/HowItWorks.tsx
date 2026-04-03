@@ -1,12 +1,11 @@
 "use client";
 
+import { useCalModal } from "@/contexts/CalModalContext";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { IconPlug, IconBrain, IconRocket } from "@/components/ui/Icons";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ScrollReveal3D from "@/components/ui/ScrollReveal3D";
-
-const DEMO_URL = "https://intake-form-sigma.vercel.app";
 
 const steps = [
   {
@@ -98,6 +97,7 @@ function StepRow({ step }: { step: typeof steps[0] }) {
 }
 
 export default function HowItWorks() {
+  const { open: openCal } = useCalModal();
   return (
     <section id="how-it-works" className="py-28 px-6" style={{ background: "#080503" }}>
       <div className="max-w-5xl mx-auto">
@@ -142,10 +142,7 @@ export default function HowItWorks() {
           className="mt-16 text-center"
         >
           <MagneticButton>
-            <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button type="button" onClick={() => openCal()}
               className="btn-shine inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold cursor-pointer"
               style={{
                 background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
@@ -154,7 +151,7 @@ export default function HowItWorks() {
               }}
             >
               Book a Discovery Call →
-            </a>
+            </button>
           </MagneticButton>
         </motion.div>
       </div>
