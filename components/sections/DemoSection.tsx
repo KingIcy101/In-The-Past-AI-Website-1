@@ -1,117 +1,277 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Vapi from "@vapi-ai/web";
 import { IconPhone, IconChat, IconCalendar, IconRobot, IconCheck, IconRefresh, IconPlay } from "@/components/ui/Icons";
 
 const DEMO_URL = "https://intake-form-sigma.vercel.app";
+const VERA_ASSISTANT_ID = "ed8bf625-bb0b-4813-8a4b-726cb5fc4dc4";
 
-// ── Voice Demo ───────────────────────────────────────────────
-const script = [
-  { who: "caller", text: "Hi, I need to reschedule my appointment for next Tuesday." },
-  { who: "ai",     text: "Of course! I have your file. We have openings at 10am or 3pm Tuesday — which works?" },
-  { who: "caller", text: "10am please." },
-  { who: "ai",     text: "Done! Tuesday at 10am is confirmed. I've sent a text with the details." },
-];
-
+// ── Live Voice Panel (Vera) ─────────────────────────────────
 function VoicePanel() {
-  const [playing, setPlaying] = useState(false);
-  const [visible, setVisible] = useState(0);
+  const vapiRef = useRef<InstanceType<typeof Vapi> | null>(null);
+  const [status, setStatus] = useState<"idle" | "connecting" | "active" | "ending">("idle");
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const callCountRef = useRef(0);
+  const lastCallEndRef = useRef(0);
+  const [callSeconds, setCallSeconds] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const start = () => {
-    setPlaying(true);
-    setVisible(0);
-    let i = 0;
-    const show = () => {
-      if (i >= script.length) return;
-      i++;
-      setVisible(i);
-      setTimeout(show, 1800);
-    };
-    setTimeout(show, 600);
+  // No Vapi init on mount — lazy init on first click only
+  const initVapi = () => {
+    const key = process.env.NEXT_PUBLIC_VAPI_KEY;
+    if (!key || vapiRef.current) return vapiRef.current;
+    const instance = new Vapi(key);
+    instance.on("call-start", () => {
+      setStatus("active");
+      setCallSeconds(0);
+      timerRef.current = setInterval(() => setCallSeconds((s) => s + 1), 1000);
+      [0, 300, 800, 1500].forEach(ms => {
+        setTimeout(() => { try { instance.setMuted(false); } catch {} }, ms);
+      });
+    });
+    instance.on("call-end", () => {
+      setStatus("idle");
+      setIsSpeaking(false);
+      setCallSeconds(0);
+      lastCallEndRef.current = Date.now();
+      if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
+    });
+    instance.on("speech-start", () => setIsSpeaking(true));
+    instance.on("speech-end", () => setIsSpeaking(false));
+    vapiRef.current = instance;
+    return instance;
   };
 
+  const handleCall = async () => {
+    if (status === "active") {
+      const vapi = vapiRef.current;
+      if (vapi) { setStatus("ending"); lastCallEndRef.current = Date.now(); vapi.stop(); }
+      return;
+    }
+    if (status === "idle") {
+      if (callCountRef.current >= 3) return;
+      if (Date.now() - lastCallEndRef.current < 30_000) return;
+      const vapi = initVapi();
+      if (!vapi) return;
+      callCountRef.current += 1;
+      setStatus("connecting");
+      try { await vapi.start(VERA_ASSISTANT_ID); try { vapi.setMuted(false); } catch {} } catch { callCountRef.current -= 1; setStatus("idle"); }
+    }
+  };
+
+  const isActive = status === "active";
+  const busy = status === "connecting" || status === "ending";
+
   return (
-    <div className="flex flex-col gap-4 h-full">
-      <div className="flex items-center gap-3 mb-2">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center"
-          style={{ background: "rgba(224,136,60,0.1)", border: "1px solid rgba(224,136,60,0.2)" }}
-        >
-          <IconPhone size={18} />
-</div>
-        <div>
-          <p className="text-sm font-semibold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>Voice Agent</p>
-          <p className="text-xs" style={{ color: "#7a6e62" }}>Real call · Real response · Real booking</p>
-        </div>
-      </div>
-
-      {/* Waveform */}
-      {playing && (
-        <div className="flex items-center gap-0.5 h-10">
-          {Array.from({ length: 28 }).map((_, i) => (
-            <div
-              key={i}
-              className="wave-bar rounded-full flex-1"
-              style={{
-                maxWidth: 5,
-                height: "100%",
-                background: "linear-gradient(to top, #8a3c14, #e0883c)",
-                animationDelay: `${i * 0.07}s`,
-                animationDuration: `${0.7 + (i % 4) * 0.2}s`,
-              }}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Transcript */}
-      <div className="flex-1 space-y-2 overflow-hidden min-h-[180px]">
-        {!playing && (
-          <div className="flex items-center justify-center h-full" style={{ color: "#3a2d25" }}>
-            <p className="text-sm">Tap to start the demo call</p>
+    <div className="flex flex-col gap-6 h-full">
+      {/* Header — Vera identity */}
+      <div className="flex items-center gap-4">
+        <div className="relative">
+          <div
+            className="w-12 h-12 rounded-2xl flex items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(224,136,60,0.18), rgba(224,136,60,0.05))",
+              border: "1px solid rgba(224,136,60,0.3)",
+              boxShadow: "0 0 20px rgba(224,136,60,0.08)",
+            }}
+          >
+            <IconRobot size={22} />
           </div>
-        )}
-        <AnimatePresence>
-          {script.slice(0, visible).map((line, i) => (
+          <div
+            className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full flex items-center justify-center"
+            style={{ background: "#0d0906", border: "1.5px solid rgba(10,7,4,0.9)" }}
+          >
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className={`flex ${line.who === "caller" ? "justify-end" : "justify-start"}`}
-            >
-              {line.who === "ai" && (
-                <span className="mr-2 mt-0.5 flex-shrink-0"><IconRobot size={14} /></span>
-              )}
-              <div
-                className="max-w-[85%] px-3 py-2 rounded-xl text-xs leading-relaxed"
-                style={
-                  line.who === "ai"
-                    ? { background: "rgba(224,136,60,0.12)", color: "#f2ece0" }
-                    : { background: "rgba(255,255,255,0.06)", color: "#b8a88a" }
-                }
-              >
-                {line.text}
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+              className="w-2 h-2 rounded-full"
+              style={{ background: "#4ade80" }}
+              animate={{ opacity: [1, 0.4, 1], scale: [1, 0.85, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+        </div>
+        <div>
+          <p
+            className="font-bold text-base"
+            style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}
+          >
+            Vera
+          </p>
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#4ade80" }} />
+            <p className="text-xs font-medium" style={{ color: "#4ade80" }}>
+              Available now — no wait
+            </p>
+          </div>
+        </div>
       </div>
 
-      <button
-        onClick={start}
-        className="w-full py-3 rounded-xl text-sm font-semibold cursor-pointer transition-all"
+      {/* Body — idle vs active */}
+      <AnimatePresence mode="wait">
+        {!isActive ? (
+          <motion.div
+            key="idle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex-1 flex flex-col justify-between"
+          >
+            <div>
+              <p
+                className="text-xl font-bold mb-2 leading-snug"
+                style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}
+              >
+                Talk to your AI receptionist — right now.
+              </p>
+              <p className="text-sm mb-5 leading-relaxed" style={{ color: "#f2ece0" }}>
+                Vera answers like a real team member. Ask her anything — hours, pricing, availability — or pretend to be a customer calling in.
+              </p>
+              <div className="space-y-2.5">
+                {[
+                  "Books appointments on the spot",
+                  "Qualifies leads in real-time",
+                  "Handles objections naturally",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5">
+                    <div
+                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ background: "#e0883c" }}
+                    />
+                    <span className="text-sm" style={{ color: "#f2ece0" }}>
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Stats strip */}
+            <div
+              className="flex gap-6 pt-4 mt-3"
+              style={{ borderTop: "1px solid rgba(224,136,60,0.1)" }}
+            >
+              {[
+                { val: "< 4s", label: "Pickup time" },
+                { val: "24/7", label: "Always live" },
+                { val: "100%", label: "Calls answered" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p
+                    className="font-bold text-sm"
+                    style={{ color: "#e0883c", fontFamily: "var(--font-display)" }}
+                  >
+                    {s.val}
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: "#f2ece0" }}>
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="active"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex-1 flex flex-col items-center justify-center gap-5"
+          >
+            <div className="flex items-center gap-2">
+              <motion.div
+                className="w-2 h-2 rounded-full"
+                style={{ background: "#4ade80" }}
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
+              />
+              <p className="text-sm font-semibold" style={{ color: "#f2ece0" }}>
+                Connected to Vera
+              </p>
+            </div>
+
+            {/* Live waveform */}
+            <div className="flex items-end gap-1" style={{ height: 50 }}>
+              {[0.3, 0.65, 1, 0.5, 0.8, 0.4, 0.9, 0.55, 0.75, 0.35].map((h, i) => (
+                <motion.div
+                  key={i}
+                  className="w-1.5 rounded-full"
+                  style={{ background: `rgba(224,136,60,${0.35 + h * 0.65})` }}
+                  animate={{
+                    height: isSpeaking
+                      ? [`${h * 42}px`, `${Math.max(6, (1 - h) * 38 + 6)}px`]
+                      : ["6px", "10px"],
+                  }}
+                  transition={{
+                    duration: isSpeaking ? 0.25 + (i % 3) * 0.08 : 1.2,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                    delay: i * 0.04,
+                  }}
+                />
+              ))}
+            </div>
+
+            <p className="text-xs text-center" style={{ color: "#f2ece0" }}>
+              Speak naturally — Vera is listening
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* CTA */}
+      <motion.button
+        whileHover={!busy ? { scale: 1.03, boxShadow: "0 8px 36px rgba(224,136,60,0.45)" } : {}}
+        whileTap={!busy ? { scale: 0.97 } : {}}
+        onClick={handleCall}
+        disabled={busy}
+        className="w-full py-5 rounded-2xl font-bold cursor-pointer transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed relative overflow-hidden"
         style={{
-          background: playing ? "rgba(224,136,60,0.08)" : "linear-gradient(135deg, #e0883c, #8a3c14)",
-          color: playing ? "#e0883c" : "#0a0704",
-          border: playing ? "1px solid rgba(224,136,60,0.2)" : "none",
+          background: isActive
+            ? "rgba(220,50,50,0.12)"
+            : "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
+          color: isActive ? "#ff8888" : "#0a0704",
+          border: isActive ? "1px solid rgba(220,50,50,0.25)" : "none",
+          boxShadow: isActive ? "none" : "0 6px 32px rgba(224,136,60,0.38)",
+          fontSize: "1.1rem",
+          letterSpacing: "0.01em",
         }}
       >
-        <span className="flex items-center justify-center gap-2">
-          {playing ? <><IconRefresh size={14} /> Replay</> : <><IconPlay size={14} /> Start Call</>}
+        {!isActive && !busy && (
+          <motion.div
+            className="absolute inset-0 rounded-2xl"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }}
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+          />
+        )}
+        <span className="relative flex items-center justify-center gap-3">
+          {status === "idle" && (
+            <>
+              <motion.span
+                className="w-3 h-3 rounded-full"
+                style={{ background: "#0a0704", opacity: 0.7 }}
+                animate={{ scale: [1, 1.4, 1] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              />
+              Call Vera Now
+            </>
+          )}
+          {status === "connecting" && <>Connecting to Vera...</>}
+          {status === "active" && (
+              <span className="flex items-center gap-2">
+                End Call
+                <span className="font-mono text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.12)", color: callSeconds >= 150 ? "#ff9999" : "#0a0704" }}>
+                  {`${Math.floor((180 - callSeconds) / 60)}:${String(Math.max(0, (180 - callSeconds) % 60)).padStart(2, "0")}`}
+                </span>
+              </span>
+            )}
+          {status === "ending" && <>Ending...</>}
         </span>
-      </button>
+      </motion.button>
     </div>
   );
 }
@@ -160,20 +320,20 @@ function ChatPanel() {
           style={{ background: "rgba(224,136,60,0.1)", border: "1px solid rgba(224,136,60,0.2)" }}
         >
           <IconChat size={18} />
-</div>
+        </div>
         <div>
           <p className="text-sm font-semibold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>Website Chat</p>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            <p className="text-xs" style={{ color: "#4caf70" }}>AI online · Instant replies</p>
+            <p className="text-xs font-medium" style={{ color: "#4ade80" }}>AI online · Instant replies</p>
           </div>
         </div>
       </div>
 
       <div className="flex-1 space-y-2 min-h-[180px]">
         {msgs === 0 && (
-          <div className="flex items-center justify-center h-full" style={{ color: "#3a2d25" }}>
-            <p className="text-sm">Tap to start the chat demo</p>
+          <div className="flex items-center justify-center h-full">
+            <p className="text-sm" style={{ color: "#f2ece0" }}>Tap to start the chat demo</p>
           </div>
         )}
         {chatScript.slice(0, msgs).map((m, i) => (
@@ -189,7 +349,7 @@ function ChatPanel() {
               style={
                 m.who === "bot"
                   ? { background: "rgba(224,136,60,0.12)", color: "#f2ece0" }
-                  : { background: "rgba(255,255,255,0.06)", color: "#b8a88a" }
+                  : { background: "rgba(255,255,255,0.06)", color: "#f2ece0" }
               }
             >
               {m.text}
@@ -209,7 +369,7 @@ function ChatPanel() {
         onClick={start}
         className="w-full py-3 rounded-xl text-sm font-semibold cursor-pointer transition-all"
         style={{
-          background: msgs > 0 ? "rgba(224,136,60,0.08)" : "linear-gradient(135deg, #e0883c, #8a3c14)",
+          background: msgs > 0 ? "rgba(224,136,60,0.08)" : "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
           color: msgs > 0 ? "#e0883c" : "#0a0704",
           border: msgs > 0 ? "1px solid rgba(224,136,60,0.2)" : "none",
         }}
@@ -247,49 +407,48 @@ function BookingPanel() {
           style={{ background: "rgba(224,136,60,0.1)", border: "1px solid rgba(224,136,60,0.2)" }}
         >
           <IconCalendar size={18} />
-</div>
+        </div>
         <div>
-          <p className="text-sm font-semibold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>Smart Booking</p>
-          <p className="text-xs" style={{ color: "#7a6e62" }}>AI confirms instantly · No back-and-forth</p>
+          <p className="text-base font-bold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>Smart Booking</p>
+          <p className="text-sm" style={{ color: "#f2ece0" }}>AI confirms instantly · No back-and-forth</p>
         </div>
       </div>
 
-      {/* Calendar */}
       <div className="overflow-x-auto flex-1">
-        <table className="w-full text-xs">
+        <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="pb-2 text-left" style={{ color: "#3a2d25" }} />
+              <th className="pb-2 text-left" style={{ color: "#6a5a48" }} />
               {days.map((d) => (
-                <th key={d} className="pb-2 text-center font-medium" style={{ color: "#7a6e62" }}>{d}</th>
+                <th key={d} className="pb-3 text-center font-semibold text-base" style={{ color: "#f2ece0" }}>{d}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {slots.map((s) => (
               <tr key={s}>
-                <td className="pr-2 py-1 text-right whitespace-nowrap" style={{ color: "#3a2d25" }}>{s}</td>
+                <td className="pr-3 py-2.5 text-right whitespace-nowrap font-medium" style={{ color: "#f2ece0", fontSize: "0.95rem" }}>{s}</td>
                 {days.map((d) => {
                   const key = `${d}-${s}`;
                   const isBooked = booked.has(key);
                   const isSel = sel === key;
                   return (
-                    <td key={d} className="py-1 px-0.5">
+                    <td key={d} className="py-2 px-1">
                       <button
                         onClick={() => pick(d, s)}
                         disabled={isBooked}
-                        className="w-full py-1 rounded-lg transition-all duration-150 cursor-pointer"
+                        className="w-full py-2.5 rounded-lg transition-all duration-150 cursor-pointer"
                         style={{
                           background: isSel
-                            ? "linear-gradient(135deg, #e0883c, #8a3c14)"
+                            ? "linear-gradient(135deg, #f0a050, #d07030, #a84820)"
                             : isBooked
                             ? "rgba(255,255,255,0.02)"
                             : "rgba(224,136,60,0.07)",
-                          color: isSel ? "#0a0704" : isBooked ? "#2a1f18" : "#e0883c",
+                          color: isSel ? "#0a0704" : isBooked ? "#5a4a38" : "#e0883c",
                           border: isSel ? "none" : `1px solid ${isBooked ? "rgba(255,255,255,0.04)" : "rgba(224,136,60,0.12)"}`,
                           fontWeight: isSel ? "700" : "400",
                           cursor: isBooked ? "default" : "pointer",
-                          fontSize: "10px",
+                          fontSize: "14px",
                         }}
                       >
                         {isBooked ? "—" : "Open"}
@@ -335,7 +494,6 @@ export default function DemoSection() {
   return (
     <section id="demo" className="py-28 px-6" style={{ background: "#0a0704" }}>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="max-w-xl mb-16">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "rgba(224,136,60,0.6)" }}>
             Interactive Demo
@@ -351,7 +509,6 @@ export default function DemoSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Sidebar tab selector */}
           <div className="lg:col-span-1 flex lg:flex-col gap-2">
             {panels.map((p) => (
               <button
@@ -360,7 +517,7 @@ export default function DemoSection() {
                 className="flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-medium text-left transition-all cursor-pointer"
                 style={{
                   background: active === p.id ? "rgba(224,136,60,0.12)" : "transparent",
-                  color: active === p.id ? "#f2ece0" : "#7a6e62",
+                  color: active === p.id ? "#f2ece0" : "#f2ece0",
                   border: active === p.id ? "1px solid rgba(224,136,60,0.25)" : "1px solid transparent",
                 }}
               >
@@ -375,7 +532,7 @@ export default function DemoSection() {
                 rel="noopener noreferrer"
                 className="block text-xs text-center px-4 py-3 rounded-xl cursor-pointer transition-all"
                 style={{
-                  background: "linear-gradient(135deg, #e0883c, #8a3c14)",
+                  background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
                   color: "#0a0704",
                   fontWeight: 700,
                 }}
@@ -385,7 +542,6 @@ export default function DemoSection() {
             </div>
           </div>
 
-          {/* Demo panel */}
           <div className="lg:col-span-4">
             <AnimatePresence mode="wait">
               <motion.div
@@ -406,14 +562,13 @@ export default function DemoSection() {
           </div>
         </div>
 
-        {/* Mobile CTA */}
         <div className="lg:hidden mt-6 text-center">
           <a
             href={DEMO_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-8 py-3.5 rounded-full text-sm font-semibold cursor-pointer"
-            style={{ background: "linear-gradient(135deg, #e0883c, #8a3c14)", color: "#0a0704" }}
+            style={{ background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)", color: "#0a0704" }}
           >
             Book a Live Demo →
           </a>

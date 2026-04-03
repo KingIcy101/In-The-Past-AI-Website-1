@@ -6,8 +6,8 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 export default function CustomCursor() {
   const mouseX = useMotionValue(-200);
   const mouseY = useMotionValue(-200);
-  const ringX = useSpring(mouseX, { stiffness: 150, damping: 18, mass: 0.5 });
-  const ringY = useSpring(mouseY, { stiffness: 150, damping: 18, mass: 0.5 });
+  const ringX = useSpring(mouseX, { stiffness: 600, damping: 28, mass: 0.2 });
+  const ringY = useSpring(mouseY, { stiffness: 600, damping: 28, mass: 0.2 });
 
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);

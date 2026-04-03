@@ -15,7 +15,7 @@ export default function MagneticButton({
   return (
     <div
       ref={ref}
-      style={{ display: "inline-block" }}
+      style={{ display: "inline-flex", alignItems: "center" }}
       onMouseMove={(e) => {
         const el = ref.current!;
         const rect = el.getBoundingClientRect();

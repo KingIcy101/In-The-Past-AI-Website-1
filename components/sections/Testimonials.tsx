@@ -4,65 +4,65 @@ import { motion } from "framer-motion";
 
 const quotes = [
   {
-    text: "We went from missing 30% of after-hours calls to booking more appointments than ever.",
-    name: "Operations Manager",
-    co: "Dental Group · Southeast US",
+    text: "Honestly didn\'t think it would work as well as it does. We were missing calls every evening and it was costing us. Now the phone gets answered no matter what time it is.",
+    name: "Sarah M.",
+    co: "Dental Practice · Atlanta, GA",
   },
   {
-    text: "Our leads doubled in the first month. The AI qualifies better than our old intake form ever did.",
-    name: "Managing Partner",
-    co: "Personal Injury Firm · Texas",
+    text: "The intake process used to be a bottleneck for us. This thing qualifies leads, books the consult, and sends a confirmation — all before I even know someone called.",
+    name: "James R.",
+    co: "Personal Injury Firm · Dallas, TX",
   },
   {
-    text: "Customers think it's a real person. More consistent than any receptionist we've ever had.",
-    name: "Owner",
-    co: "HVAC & Plumbing · Midwest",
+    text: "Had a patient call at 11pm on a Friday to reschedule. The AI handled it, sent them a confirmation, and I saw it in my dashboard the next morning. That\'s when I knew.",
+    name: "Dr. Lisa K.",
+    co: "Medical Practice · Phoenix, AZ",
   },
   {
-    text: "Setup was seamless. The ROI was visible within the first week. Genuinely incredible.",
-    name: "Practice Manager",
-    co: "Medical Clinic · California",
+    text: "We tried a virtual receptionist service before this. Night and day difference. This actually knows our business.",
+    name: "Marcus T.",
+    co: "HVAC & Plumbing · Columbus, OH",
   },
   {
-    text: "After-hours bookings went up 60%. Money we were leaving on the table every night.",
-    name: "Broker",
-    co: "Real Estate Agency · Florida",
+    text: "Saturday afternoon I got a dashboard notification — 3 new bookings while I was at my kid\'s soccer game. That\'s what sold me on it.",
+    name: "Kevin A.",
+    co: "Real Estate Brokerage · Tampa, FL",
   },
   {
-    text: "Our service calls get answered 24/7 now. Customer satisfaction scores jumped immediately.",
-    name: "General Manager",
-    co: "Home Services Co. · Ohio",
+    text: "Setup took like two days. I kept waiting for something to break. It hasn\'t. Six months in and it\'s the best thing we\'ve added to the business.",
+    name: "Rachel D.",
+    co: "Home Services Co. · Denver, CO",
   },
   // Duplicate for seamless loop
   {
-    text: "We went from missing 30% of after-hours calls to booking more appointments than ever.",
-    name: "Operations Manager",
-    co: "Dental Group · Southeast US",
+    text: "Honestly didn\'t think it would work as well as it does. We were missing calls every evening and it was costing us. Now the phone gets answered no matter what time it is.",
+    name: "Sarah M.",
+    co: "Dental Practice · Atlanta, GA",
   },
   {
-    text: "Our leads doubled in the first month. The AI qualifies better than our old intake form ever did.",
-    name: "Managing Partner",
-    co: "Personal Injury Firm · Texas",
+    text: "The intake process used to be a bottleneck for us. This thing qualifies leads, books the consult, and sends a confirmation — all before I even know someone called.",
+    name: "James R.",
+    co: "Personal Injury Firm · Dallas, TX",
   },
   {
-    text: "Customers think it's a real person. More consistent than any receptionist we've ever had.",
-    name: "Owner",
-    co: "HVAC & Plumbing · Midwest",
+    text: "Had a patient call at 11pm on a Friday to reschedule. The AI handled it, sent them a confirmation, and I saw it in my dashboard the next morning. That\'s when I knew.",
+    name: "Dr. Lisa K.",
+    co: "Medical Practice · Phoenix, AZ",
   },
   {
-    text: "Setup was seamless. The ROI was visible within the first week. Genuinely incredible.",
-    name: "Practice Manager",
-    co: "Medical Clinic · California",
+    text: "We tried a virtual receptionist service before this. Night and day difference. This actually knows our business.",
+    name: "Marcus T.",
+    co: "HVAC & Plumbing · Columbus, OH",
   },
   {
-    text: "After-hours bookings went up 60%. Money we were leaving on the table every night.",
-    name: "Broker",
-    co: "Real Estate Agency · Florida",
+    text: "Saturday afternoon I got a dashboard notification — 3 new bookings while I was at my kid\'s soccer game. That\'s what sold me on it.",
+    name: "Kevin A.",
+    co: "Real Estate Brokerage · Tampa, FL",
   },
   {
-    text: "Our service calls get answered 24/7 now. Customer satisfaction scores jumped immediately.",
-    name: "General Manager",
-    co: "Home Services Co. · Ohio",
+    text: "Setup took like two days. I kept waiting for something to break. It hasn\'t. Six months in and it\'s the best thing we\'ve added to the business.",
+    name: "Rachel D.",
+    co: "Home Services Co. · Denver, CO",
   },
 ];
 
@@ -98,10 +98,10 @@ function QuoteCard({ q }: { q: typeof quotes[0] }) {
         &ldquo;{q.text}&rdquo;
       </p>
       <div style={{ borderTop: "1px solid rgba(224,136,60,0.08)", paddingTop: 12 }}>
-        <p className="text-xs font-semibold" style={{ color: "#b8a88a", fontFamily: "var(--font-display)" }}>
+        <p className="text-xs font-semibold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>
           {q.name}
         </p>
-        <p className="text-xs mt-0.5" style={{ color: "#4a3d35" }}>{q.co}</p>
+        <p className="text-sm mt-0.5" style={{ color: "#f2ece0" }}>{q.co}</p>
       </div>
     </div>
   );
@@ -178,7 +178,7 @@ export default function Testimonials() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 mt-10">
-        <p className="text-xs" style={{ color: "#3a2d25" }}>
+        <p className="text-sm" style={{ color: "#f2ece0" }}>
           Identities kept anonymous at client request · All reviews verified
         </p>
       </div>

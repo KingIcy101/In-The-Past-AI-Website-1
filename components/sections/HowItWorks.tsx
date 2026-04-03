@@ -13,9 +13,9 @@ const steps = [
     n: "01",
     Icon: IconPlug,
     title: "Connect",
-    sub: "We wire into your existing stack",
-    desc: "We integrate with your phone number, CRM, and calendar. No technical setup on your end — we handle everything within 24 hours.",
-    chips: ["Any phone number", "HubSpot / Salesforce", "Google Calendar", "Calendly"],
+    sub: "New number, connected to your world",
+    desc: "We provision a dedicated phone number for your business. Calls can be routed to your existing line if needed. We connect your CRM and calendar too — no technical setup required on your end.",
+    chips: ["New number provided", "Route to existing line", "HubSpot / Salesforce / GHL", "Calendar sync"],
   },
   {
     n: "02",
@@ -64,9 +64,9 @@ function StepRow({ step }: { step: typeof steps[0] }) {
 
       <div className="pb-4">
         <div className="flex items-center gap-3 mb-3">
-          <span className="text-xs font-bold" style={{ color: "rgba(224,136,60,0.5)" }}>{step.n}</span>
+          <span className="text-sm font-bold" style={{ color: "rgba(224,136,60,0.9)" }}>{step.n}</span>
           <div className="w-6 h-px" style={{ background: "rgba(224,136,60,0.3)" }} />
-          <span className="text-xs" style={{ color: "#7a6e62" }}>{step.sub}</span>
+          <span className="text-sm" style={{ color: "#f2ece0" }}>{step.sub}</span>
         </div>
         <h3
           className="text-2xl md:text-3xl font-bold mb-3"
@@ -74,18 +74,18 @@ function StepRow({ step }: { step: typeof steps[0] }) {
         >
           {step.title}
         </h3>
-        <p className="text-base leading-relaxed mb-5" style={{ color: "#7a6e62" }}>
+        <p className="text-base leading-relaxed mb-5" style={{ color: "#f2ece0" }}>
           {step.desc}
         </p>
         <div className="flex flex-wrap gap-2">
           {step.chips.map((c) => (
             <span
               key={c}
-              className="px-3 py-1 rounded-full text-xs font-medium"
+              className="px-3 py-1.5 rounded-full text-sm font-medium"
               style={{
                 background: "rgba(224,136,60,0.07)",
                 border: "1px solid rgba(224,136,60,0.15)",
-                color: "#b8a88a",
+                color: "#f2ece0",
               }}
             >
               {c}
@@ -99,7 +99,7 @@ function StepRow({ step }: { step: typeof steps[0] }) {
 
 export default function HowItWorks() {
   return (
-    <section className="py-28 px-6" style={{ background: "#080503" }}>
+    <section id="how-it-works" className="py-28 px-6" style={{ background: "#080503" }}>
       <div className="max-w-5xl mx-auto">
         <div className="mb-16">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "rgba(224,136,60,0.6)" }}>
@@ -148,7 +148,7 @@ export default function HowItWorks() {
               rel="noopener noreferrer"
               className="btn-shine inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold cursor-pointer"
               style={{
-                background: "linear-gradient(135deg, #e0883c, #8a3c14)",
+                background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
                 color: "#0a0704",
                 boxShadow: "0 4px 24px rgba(224,136,60,0.25)",
               }}

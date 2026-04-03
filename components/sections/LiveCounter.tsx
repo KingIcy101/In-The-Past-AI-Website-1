@@ -3,15 +3,25 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-// Simulates a live "missed calls" counter across all businesses not using AI
-function useLiveCount(basePerSecond = 0.34) {
+// Simulates a live "missed calls" counter — increments at random paces
+function useLiveCount() {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((c) => parseFloat((c + basePerSecond).toFixed(1)));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [basePerSecond]);
+    let timeout: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      // Random increment: 1 jump most of the time, occasionally 2-3
+      const jump = Math.random() < 0.15 ? Math.floor(Math.random() * 2) + 2 : 1;
+      setCount((c) => c + jump);
+      // Random delay: fast bursts (200-600ms) and slow pauses (1200-3000ms)
+      const fast = Math.random() < 0.4;
+      const delay = fast
+        ? 200 + Math.random() * 400
+        : 1200 + Math.random() * 1800;
+      timeout = setTimeout(tick, delay);
+    };
+    timeout = setTimeout(tick, 800 + Math.random() * 1200);
+    return () => clearTimeout(timeout);
+  }, []);
   return count;
 }
 
@@ -37,7 +47,7 @@ const items = [
 ];
 
 export default function LiveCounter() {
-  const missed = useLiveCount(0.42);
+  const missed = useLiveCount();
 
   return (
     <section
@@ -58,7 +68,7 @@ export default function LiveCounter() {
               style={{ background: "rgba(224,136,60,0.05)", border: "1px solid rgba(224,136,60,0.1)" }}
             >
               <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#e0883c", opacity: 0.7 }} />
-              <span className="text-xs font-medium" style={{ color: "#7a6e62" }}>{item.label}</span>
+              <span className="text-xs font-medium" style={{ color: "#f2ece0" }}>{item.label}</span>
             </div>
           ))}
         </div>
@@ -94,7 +104,7 @@ export default function LiveCounter() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#7a6e62" }}>
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f2ece0" }}>
                 Live
               </span>
             </div>
@@ -104,7 +114,7 @@ export default function LiveCounter() {
             >
               Calls missed by businesses without AI — right now.
             </p>
-            <p className="text-sm leading-relaxed" style={{ color: "#4a3d35" }}>
+            <p className="text-sm leading-relaxed" style={{ color: "#f2ece0" }}>
               This counter has been running since you opened this page.
               Each number represents a real lead lost to a competitor.
             </p>

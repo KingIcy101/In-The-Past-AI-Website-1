@@ -230,3 +230,16 @@ body::before {
 /* ── Pause testimonial tickers on hover ─────────────────────────── */
 .ticker-wrap:hover .ticker         { animation-play-state: paused; }
 .ticker-reverse-wrap:hover .ticker-reverse { animation-play-state: paused; }
+
+/* ── Nav CTA glow pulse ─────────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(224,136,60,0.45), 0 0 28px rgba(224,136,60,0.2), 0 2px 10px rgba(0,0,0,0.3); }
+  50%       { box-shadow: 0 0 22px rgba(224,136,60,0.7), 0 0 44px rgba(224,136,60,0.32), 0 2px 10px rgba(0,0,0,0.3); }
+}
+.nav-cta-glow {
+  animation: glow-pulse 2.4s ease-in-out infinite;
+}
+.nav-cta-glow:hover {
+  animation: none;
+  box-shadow: 0 0 28px rgba(224,136,60,0.8), 0 0 56px rgba(224,136,60,0.4), 0 4px 16px rgba(0,0,0,0.4) !important;
+}

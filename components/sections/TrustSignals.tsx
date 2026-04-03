@@ -65,7 +65,7 @@ function BigStat({ value, suffix = "", prefix = "", label, sub, custom, index, s
       >
         {label}
       </p>
-      {sub && <p className="text-xs mt-1" style={{ color: "#4a3d35" }}>{sub}</p>}
+      {sub && <p className="text-sm mt-1" style={{ color: "#f2ece0" }}>{sub}</p>}
     </motion.div>
   );
 }
@@ -97,7 +97,7 @@ export default function TrustSignals() {
         className="relative z-10 max-w-6xl mx-auto"
       >
         <div className="text-center mb-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: "rgba(224,136,60,0.5)" }}>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: "rgba(224,136,60,0.8)" }}>
             By the numbers
           </p>
         </div>
@@ -122,7 +122,7 @@ export default function TrustSignals() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-sm" style={{ color: "#4a3d35" }}>
+          <p className="text-sm" style={{ color: "#f2ece0" }}>
             Across 250+ active deployments · Updated in real time
           </p>
         </div>

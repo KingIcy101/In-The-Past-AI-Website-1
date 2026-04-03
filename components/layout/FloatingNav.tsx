@@ -58,7 +58,7 @@ export default function FloatingNav() {
                   In The Past AI
                 </span>
                 <span
-                  className="text-[10px] font-medium tracking-[0.12em] uppercase hidden sm:block"
+                  className="text-xs font-medium tracking-[0.12em] uppercase hidden sm:block"
                   style={{ color: "rgba(224,136,60,0.55)" }}
                 >
                   Any Industry · Always On
@@ -73,13 +73,13 @@ export default function FloatingNav() {
                   key={l.label}
                   onClick={() => scroll(l.href)}
                   className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer"
-                  style={{ color: "#7a6e62" }}
+                  style={{ color: "#f2ece0" }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.color = "#f2ece0";
                     (e.currentTarget as HTMLElement).style.background = "rgba(224,136,60,0.07)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = "#7a6e62";
+                    (e.currentTarget as HTMLElement).style.color = "#f2ece0";
                     (e.currentTarget as HTMLElement).style.background = "transparent";
                   }}
                 >
@@ -94,16 +94,19 @@ export default function FloatingNav() {
                 href={DEMO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-all duration-150"
+                className="btn-shine nav-cta-glow hidden xs:inline-flex sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-transform duration-200 relative overflow-hidden"
                 style={{
-                  background: "linear-gradient(135deg, #e0883c, #8a3c14)",
-                  color: "#0a0704",
-                  boxShadow: "0 2px 16px rgba(224,136,60,0.25)",
+                  background: "linear-gradient(135deg, #f5aa60, #e07830, #b05020)",
+                  color: "#2a1206",
                 }}
-                onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"}
-                onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.transform = ""}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-1px) scale(1.03)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "";
+                }}
               >
-                Book a Discovery Call
+                Book a Discovery Call <span style={{ opacity: 0.75 }}>→</span>
               </a>
 
               {/* Mobile toggle */}
@@ -151,10 +154,10 @@ export default function FloatingNav() {
                   href={DEMO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 px-4 py-3 rounded-xl text-sm font-semibold text-center cursor-pointer"
+                  className="btn-shine nav-cta-glow mt-2 px-4 py-3 rounded-xl text-sm font-semibold text-center cursor-pointer"
                   style={{
-                    background: "linear-gradient(135deg, #e0883c, #8a3c14)",
-                    color: "#0a0704",
+                    background: "linear-gradient(135deg, #f5aa60, #e07830, #b05020)",
+                    color: "#2a1206",
                   }}
                 >
                   Book a Discovery Call

@@ -54,7 +54,7 @@ export default function WhatWeBuild() {
               ]}
             />
           </div>
-          <p className="text-base max-w-sm md:pb-1" style={{ color: "#7a6e62" }}>
+          <p className="text-base max-w-sm md:pb-1" style={{ color: "#f2ece0" }}>
             Everything your business needs to handle communications at scale — without adding headcount.
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function WhatWeBuild() {
           className="mb-5"
         >
           <TiltCard
-            className="rounded-2xl p-8 md:p-10 overflow-hidden"
+            className="rounded-2xl p-5 md:p-10 overflow-hidden"
             style={{
               background: "linear-gradient(135deg, rgba(224,136,60,0.1) 0%, rgba(12,8,5,0.98) 60%)",
               border: "1px solid rgba(224,136,60,0.2)",
@@ -89,7 +89,7 @@ export default function WhatWeBuild() {
                 <div className="flex items-center gap-3 mb-5">
                   <span
                     className="px-3 py-1 rounded-full text-xs font-semibold"
-                    style={{ background: "linear-gradient(135deg, #e0883c, #8a3c14)", color: "#0a0704" }}
+                    style={{ background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)", color: "#0a0704" }}
                   >
                     Primary Service
                   </span>
@@ -106,7 +106,7 @@ export default function WhatWeBuild() {
                 >
                   Voice Agents
                 </h3>
-                <p className="text-base leading-relaxed mb-6" style={{ color: "#7a6e62" }}>
+                <p className="text-base leading-relaxed mb-6" style={{ color: "#f2ece0" }}>
                   24/7 AI phone agents that answer every call, qualify leads, book appointments, and follow up — indistinguishable from a real receptionist.
                 </p>
                 <a
@@ -132,7 +132,7 @@ export default function WhatWeBuild() {
                     >
                       <Icon size={14} />
                     </div>
-                    <span className="text-sm" style={{ color: "#b8a88a" }}>{label}</span>
+                    <span className="text-sm" style={{ color: "#f2ece0" }}>{label}</span>
                   </div>
                 ))}
               </div>
@@ -168,12 +168,12 @@ export default function WhatWeBuild() {
                 >
                   {card.title}
                 </h3>
-                <p className="text-sm leading-relaxed mb-5" style={{ color: "#7a6e62" }}>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: "#f2ece0" }}>
                   {card.desc}
                 </p>
                 <ul className="space-y-2">
                   {card.points.map((p) => (
-                    <li key={p} className="flex items-center gap-2.5 text-sm" style={{ color: "#b8a88a" }}>
+                    <li key={p} className="flex items-center gap-2.5 text-sm" style={{ color: "#f2ece0" }}>
                       <IconCheck size={14} />
                       {p}
                     </li>

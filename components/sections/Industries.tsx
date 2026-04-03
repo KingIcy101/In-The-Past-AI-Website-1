@@ -110,7 +110,7 @@ function FlipCard({ ind, index }: { ind: typeof industries[0]; index: number }) 
           <p style={{
             fontFamily: "var(--font-display)",
             fontWeight: 700,
-            fontSize: "1.1rem",
+            fontSize: "1.2rem",
             color: "#f2ece0",
             textAlign: "center",
             lineHeight: 1.2,
@@ -120,8 +120,8 @@ function FlipCard({ ind, index }: { ind: typeof industries[0]; index: number }) 
 
           {/* Flip hint */}
           <p style={{
-            fontSize: "0.6rem",
-            color: "rgba(224,136,60,0.28)",
+            fontSize: "0.85rem",
+            color: "rgba(224,136,60,0.6)",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             marginTop: 4,
@@ -178,7 +178,7 @@ function FlipCard({ ind, index }: { ind: typeof industries[0]; index: number }) 
               <p style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 700,
-                fontSize: "0.9rem",
+                fontSize: "1rem",
                 color: "#f2ece0",
               }}>
                 {ind.name}
@@ -187,7 +187,7 @@ function FlipCard({ ind, index }: { ind: typeof industries[0]; index: number }) 
 
             {/* Tagline */}
             <p style={{
-              fontSize: "0.7rem",
+              fontSize: "0.85rem",
               fontWeight: 600,
               fontStyle: "italic",
               color: "#e0883c",
@@ -205,16 +205,16 @@ function FlipCard({ ind, index }: { ind: typeof industries[0]; index: number }) 
             }} />
 
             {/* Description */}
-            <p style={{ fontSize: "0.7rem", color: "#7a6e62", lineHeight: 1.65 }}>
+            <p style={{ fontSize: "0.85rem", color: "#f2ece0", lineHeight: 1.65 }}>
               {ind.desc}
             </p>
           </div>
 
           {/* CTA */}
           <p style={{
-            fontSize: "0.6875rem",
+            fontSize: "0.8rem",
             fontWeight: 600,
-            color: "rgba(224,136,60,0.55)",
+            color: "rgba(224,136,60,0.85)",
           }}>
             AI voice + chat →
           </p>
@@ -243,7 +243,7 @@ export default function Industries() {
                 { text: "industry.", className: "gradient-amber" },
               ]}
             />
-            <p className="text-sm leading-relaxed max-w-sm md:pb-1" style={{ color: "#7a6e62" }}>
+            <p className="text-sm leading-relaxed max-w-sm md:pb-1" style={{ color: "#f2ece0" }}>
               Our AI knows your business — your terms, your workflows, your customers.
             </p>
           </div>
@@ -255,10 +255,40 @@ export default function Industries() {
           ))}
         </div>
 
-        <div className="mt-7">
-          <p className="text-xs italic" style={{ color: "#3a2d25" }}>
-            Whatever industry you&apos;re in — we have voice + chat solutions tailored to it.
-          </p>
+        {/* Bottom CTA banner */}
+        <div
+          className="mt-10 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8"
+          style={{
+            background: "linear-gradient(135deg, rgba(224,136,60,0.12) 0%, rgba(10,7,4,0.97) 60%)",
+            border: "1px solid rgba(224,136,60,0.22)",
+            boxShadow: "0 0 60px rgba(224,136,60,0.06) inset",
+          }}
+        >
+          <div>
+            <p
+              className="text-2xl md:text-3xl font-bold mb-3 leading-snug"
+              style={{ fontFamily: "var(--font-display)", color: "#f2ece0" }}
+            >
+              We build voice agents for{" "}
+              <span className="gradient-amber">any industry.</span>
+            </p>
+            <p className="text-base leading-relaxed" style={{ color: "#f2ece0", maxWidth: "52ch" }}>
+              Don&apos;t see yours above? We&apos;ve built for dozens of verticals. If your business runs on calls, we can automate it.
+            </p>
+          </div>
+          <a
+            href="https://intake-form-sigma.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold transition-all duration-200 whitespace-nowrap"
+            style={{
+              background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
+              color: "#0a0704",
+              boxShadow: "0 4px 24px rgba(224,136,60,0.3)",
+            }}
+          >
+            Schedule a Call →
+          </a>
         </div>
       </div>
     </section>

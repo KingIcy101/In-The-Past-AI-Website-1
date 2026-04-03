@@ -10,21 +10,21 @@ const pain = [
     emphasis: "Of callers never call back",
     detail:
       "When someone hits voicemail, nearly one in three immediately dials a competitor. That's business you'll never get a second chance to win.",
-    aside: "Gone. Permanently.",
+    aside: "Gone Permanently",
   },
   {
     stat: "47%",
     emphasis: "Of business calls happen after hours",
     detail:
       "While your team is off the clock, almost half your calls are going to voicemail. Your competitors' AI agents are answering every single one.",
-    aside: "While you sleep.",
+    aside: "While you sleep",
   },
   {
     stat: "$52K+",
     emphasis: "In annual revenue lost per business",
     detail:
       "The average business loses over $52,000 a year to missed calls and uncontacted leads. That's a full hire, a full ad budget, or a year of growth — gone.",
-    aside: "Every. Year.",
+    aside: "Every Year",
   },
 ];
 
@@ -39,7 +39,7 @@ function PainRow({ item, index }: { item: typeof pain[0]; index: number }) {
       initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1 } : {}}
       transition={{ duration: 0.6 }}
-      className={`flex flex-col ${reverse ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-8 md:gap-16 py-16 md:py-20`}
+      className={`flex flex-col ${reverse ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-6 md:gap-16 py-12 md:py-20`}
       style={{ borderBottom: "1px solid rgba(224,136,60,0.06)" }}
     >
       {/* Huge number — 3D perspective scale-up */}
@@ -51,7 +51,7 @@ function PainRow({ item, index }: { item: typeof pain[0]; index: number }) {
           className="font-bold leading-none gradient-amber"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(5rem, 14vw, 11rem)",
+            fontSize: "clamp(4rem, 18vw, 11rem)",
             transformPerspective: 900,
           }}
         >
@@ -61,8 +61,8 @@ function PainRow({ item, index }: { item: typeof pain[0]; index: number }) {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.45 }}
-          className="text-sm mt-3 font-medium uppercase tracking-widest"
-          style={{ color: "rgba(224,136,60,0.4)" }}
+          className="text-sm mt-6 font-medium uppercase tracking-widest"
+          style={{ color: "#c4b49a" }}
         >
           {item.aside}
         </motion.p>
@@ -86,7 +86,7 @@ function PainRow({ item, index }: { item: typeof pain[0]; index: number }) {
           >
             {item.emphasis}
           </h3>
-          <p className="text-base leading-relaxed" style={{ color: "#7a6e62" }}>
+          <p className="text-base leading-relaxed" style={{ color: "#f2ece0" }}>
             {item.detail}
           </p>
         </motion.div>
@@ -118,7 +118,7 @@ export default function PainPoints() {
             { text: "costs you money.", className: "gradient-amber" },
           ]}
         />
-        <p className="text-base mb-0" style={{ color: "#7a6e62" }}>
+        <p className="text-base mb-0" style={{ color: "#f2ece0" }}>
           The numbers don&apos;t lie.
         </p>
 

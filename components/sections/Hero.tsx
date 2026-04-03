@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { IconRobot, IconPhone, IconPlay } from "@/components/ui/Icons";
+import CalModal from "@/components/ui/CalModal";
 
-const DEMO_URL = "https://intake-form-sigma.vercel.app";
 
 const words = ["Call.", "Lead.", "Booking.", "Opportunity."];
 
@@ -89,7 +89,7 @@ function PhoneMockup() {
 
         {/* Status bar */}
         <div className="flex items-center justify-between px-6 pt-3.5 pb-1">
-          <span className="text-[10px] font-semibold" style={{ color: "#7a6e62", fontVariantNumeric: "tabular-nums" }}>
+          <span className="text-xs font-semibold" style={{ color: "#f2ece0", fontVariantNumeric: "tabular-nums" }}>
             9:41
           </span>
           {/* Dynamic island */}
@@ -162,7 +162,7 @@ function PhoneMockup() {
               style={{ background: "#4ade80" }}
             />
             <span
-              className="text-[11px] font-semibold"
+              className="text-xs font-semibold"
               style={{ color: "#4ade80", fontVariantNumeric: "tabular-nums" }}
             >
               {fmt(timer)}
@@ -225,7 +225,7 @@ function PhoneMockup() {
                 className={`flex ${l.role === "caller" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className="max-w-[82%] px-3 py-2 text-[9px] leading-relaxed"
+                  className="max-w-[82%] px-3 py-2 text-[11px] leading-relaxed"
                   style={
                     l.role === "agent"
                       ? {
@@ -339,6 +339,7 @@ function TypewriterWord() {
 }
 
 export default function Hero() {
+  const [calOpen, setCalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -350,11 +351,13 @@ export default function Hero() {
   const phoneScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(224,136,60,0.08) 0%, #0a0704 60%)" }}
-    >
+    <>
+      <CalModal isOpen={calOpen} onClose={() => setCalOpen(false)} />
+      <section
+        ref={sectionRef}
+        className="relative min-h-screen flex items-center overflow-hidden"
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(224,136,60,0.08) 0%, #0a0704 60%)" }}
+      >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -365,7 +368,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
           {/* Left: Copy — moves up + fades as user scrolls past hero */}
           <motion.div className="flex flex-col gap-8" style={{ y: textY, opacity: textOpacity }}>
@@ -376,7 +379,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2.5 self-start"
             >
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs font-semibold tracking-[0.18em] uppercase" style={{ color: "#7a6e62" }}>
+              <span className="text-xs font-semibold tracking-[0.18em] uppercase" style={{ color: "#f2ece0" }}>
                 AI Reception · Always On
               </span>
             </motion.div>
@@ -402,25 +405,23 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg leading-relaxed max-w-lg"
-              style={{ color: "#7a6e62" }}
+              style={{ color: "#f2ece0" }}
             >
               Your AI receptionist picks up every call, books every appointment, and captures every lead —
-              <span style={{ color: "#b8a88a" }}> 24 hours a day, 7 days a week, 365 days a year.</span>
+              <span style={{ color: "#f2ece0" }}> 24 hours a day, 7 days a week, 365 days a year.</span>
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-col sm:flex-row flex-wrap gap-3"
             >
-              <a
-                href={DEMO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer"
+              <button
+                onClick={() => setCalOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer w-full sm:w-auto"
                 style={{
-                  background: "linear-gradient(135deg, #e0883c, #8a3c14)",
+                  background: "linear-gradient(135deg, #f0a050, #d07030, #a84820)",
                   color: "#0a0704",
                   boxShadow: "0 4px 24px rgba(224,136,60,0.3)",
                 }}
@@ -428,10 +429,10 @@ export default function Hero() {
                 onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.transform = ""}
               >
                 Book a Discovery Call →
-              </a>
+              </button>
               <button
                 onClick={() => document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer w-full sm:w-auto"
                 style={{
                   background: "rgba(224,136,60,0.07)",
                   color: "#e0883c",
@@ -457,9 +458,9 @@ export default function Hero() {
                 { val: "250+", label: "Businesses" },
               ].map((s, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  {i > 0 && <span style={{ color: "rgba(224,136,60,0.2)" }}>·</span>}
+                  {i > 0 && <span style={{ color: "rgba(224,136,60,0.45)" }}>·</span>}
                   <span className="text-sm font-bold" style={{ color: "#e0883c" }}>{s.val}</span>
-                  <span className="text-xs" style={{ color: "#4a3d35" }}>{s.label}</span>
+                  <span className="text-xs" style={{ color: "#f2ece0" }}>{s.label}</span>
                 </div>
               ))}
             </motion.div>
@@ -504,12 +505,13 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            style={{ color: "rgba(224,136,60,0.35)", fontSize: 20 }}
+            style={{ color: "rgba(224,136,60,0.65)", fontSize: 20 }}
           >
             ↓
           </motion.div>
         </motion.div>
       </div>
     </section>
+    </>
   );
 }

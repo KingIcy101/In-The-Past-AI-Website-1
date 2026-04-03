@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import FloatingNav from "@/components/layout/FloatingNav";
 import FloatingCTA from "@/components/layout/FloatingCTA";
+import VoiceWidget from "@/components/layout/VoiceWidget";
 import CustomCursor from "@/components/ui/CustomCursor";
 import AuraBackground from "@/components/ui/AuraBackground";
 import ScrollProgress from "@/components/ui/ScrollProgress";
@@ -37,6 +38,7 @@ export default function RootLayout({
         <FloatingNav />
         <main>{children}</main>
         <FloatingCTA />
+        <VoiceWidget />
       </body>
     </html>
   );

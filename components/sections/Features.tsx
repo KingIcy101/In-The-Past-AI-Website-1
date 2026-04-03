@@ -117,7 +117,7 @@ export default function Features() {
               <button
                 key={f.id}
                 onClick={() => setActive(i)}
-                className="w-full text-left flex items-center gap-3 px-4 py-3 transition-all duration-200 relative"
+                className="w-full text-left flex items-center gap-3 px-4 py-5 transition-all duration-200 relative"
                 style={{
                   borderBottom: i < FEATURES.length - 1 ? "1px solid rgba(224,136,60,0.06)" : "none",
                   background: active === i ? "rgba(224,136,60,0.08)" : "transparent",
@@ -130,28 +130,28 @@ export default function Features() {
                 />
 
                 <span
-                  className="text-[9px] font-bold w-5 flex-shrink-0"
-                  style={{ color: active === i ? "#e0883c" : "rgba(224,136,60,0.22)" }}
+                  className="text-base font-bold w-7 flex-shrink-0"
+                  style={{ color: active === i ? "#e0883c" : "rgba(224,136,60,0.55)" }}
                 >
                   {f.id}
                 </span>
 
                 <div
-                  className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200"
                   style={{ background: active === i ? "rgba(224,136,60,0.14)" : "transparent" }}
                 >
-                  <f.Icon size={13} color={active === i ? "#e0883c" : "#4a3d35"} />
+                  <f.Icon size={18} color={active === i ? "#e0883c" : "#8a7060"} />
                 </div>
 
                 <div className="flex-1 min-w-0">
                   <p
-                    className="text-xs font-semibold truncate transition-colors duration-200"
-                    style={{ color: active === i ? "#f2ece0" : "#7a6e62" }}
+                    className="text-base font-semibold truncate transition-colors duration-200"
+                    style={{ color: active === i ? "#f2ece0" : "#f2ece0" }}
                   >
                     {f.title}
                   </p>
                   {active === i && (
-                    <p className="text-[10px] mt-0.5 truncate" style={{ color: "rgba(224,136,60,0.5)" }}>
+                    <p className="text-sm mt-1 truncate" style={{ color: "rgba(224,136,60,0.9)" }}>
                       {f.short}
                     </p>
                   )}
@@ -200,13 +200,13 @@ export default function Features() {
                   >
                     {feat.stat}
                   </div>
-                  <div className="text-[10px] mt-1 uppercase tracking-wider" style={{ color: "#7a6e62" }}>
+                  <div className="text-sm mt-1 uppercase tracking-wider" style={{ color: "#f2ece0" }}>
                     {feat.statLabel}
                   </div>
                 </div>
               </div>
 
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] mb-2" style={{ color: "rgba(224,136,60,0.4)" }}>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] mb-2" style={{ color: "rgba(224,136,60,0.65)" }}>
                 Feature {feat.id}
               </p>
 
@@ -217,7 +217,7 @@ export default function Features() {
                 {feat.title}
               </h3>
 
-              <p className="text-sm leading-relaxed mb-8" style={{ color: "#7a6e62", maxWidth: "52ch" }}>
+              <p className="text-sm leading-relaxed mb-8" style={{ color: "#f2ece0", maxWidth: "52ch" }}>
                 {feat.desc}
               </p>
 
@@ -226,7 +226,7 @@ export default function Features() {
                 {feat.points.map((p) => (
                   <div key={p} className="flex items-start gap-2.5">
                     <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#e0883c" }} />
-                    <span className="text-xs leading-relaxed" style={{ color: "#b8a88a" }}>{p}</span>
+                    <span className="text-xs leading-relaxed" style={{ color: "#f2ece0" }}>{p}</span>
                   </div>
                 ))}
               </div>
