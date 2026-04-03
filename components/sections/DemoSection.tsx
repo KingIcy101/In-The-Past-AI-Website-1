@@ -70,14 +70,14 @@ function VoicePanel() {
       <div className="flex items-center gap-4">
         <div className="relative">
           <div
-            className="w-12 h-12 rounded-2xl flex items-center justify-center"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center"
             style={{
               background: "linear-gradient(135deg, rgba(224,136,60,0.18), rgba(224,136,60,0.05))",
               border: "1px solid rgba(224,136,60,0.3)",
               boxShadow: "0 0 20px rgba(224,136,60,0.08)",
             }}
           >
-            <IconRobot size={22} />
+            <IconRobot size={28} />
           </div>
           <div
             className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full flex items-center justify-center"
@@ -93,14 +93,14 @@ function VoicePanel() {
         </div>
         <div>
           <p
-            className="font-bold text-base"
+            className="font-bold text-xl"
             style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}
           >
             Vera
           </p>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#4ade80" }} />
-            <p className="text-xs font-medium" style={{ color: "#4ade80" }}>
+            <p className="text-sm font-medium" style={{ color: "#4ade80" }}>
               Available now — no wait
             </p>
           </div>
@@ -120,12 +120,12 @@ function VoicePanel() {
           >
             <div>
               <p
-                className="text-xl font-bold mb-2 leading-snug"
+                className="text-2xl font-bold mb-3 leading-snug"
                 style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}
               >
                 Talk to your AI receptionist — right now.
               </p>
-              <p className="text-sm mb-5 leading-relaxed" style={{ color: "#f2ece0" }}>
+              <p className="text-base mb-5 leading-relaxed" style={{ color: "#f2ece0" }}>
                 Vera answers like a real team member. Ask her anything — hours, pricing, availability — or pretend to be a customer calling in.
               </p>
               <div className="space-y-2.5">
@@ -139,7 +139,7 @@ function VoicePanel() {
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                       style={{ background: "#e0883c" }}
                     />
-                    <span className="text-sm" style={{ color: "#f2ece0" }}>
+                    <span className="text-base" style={{ color: "#f2ece0" }}>
                       {item}
                     </span>
                   </div>
@@ -159,12 +159,12 @@ function VoicePanel() {
               ].map((s) => (
                 <div key={s.label}>
                   <p
-                    className="font-bold text-sm"
+                    className="font-bold text-lg"
                     style={{ color: "#e0883c", fontFamily: "var(--font-display)" }}
                   >
                     {s.val}
                   </p>
-                  <p className="text-xs mt-0.5" style={{ color: "#f2ece0" }}>
+                  <p className="text-sm mt-0.5" style={{ color: "#f2ece0" }}>
                     {s.label}
                   </p>
                 </div>
@@ -325,7 +325,7 @@ function ChatPanel() {
           <p className="text-sm font-semibold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>Website Chat</p>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            <p className="text-xs font-medium" style={{ color: "#4ade80" }}>AI online · Instant replies</p>
+            <p className="text-sm font-medium" style={{ color: "#4ade80" }}>AI online · Instant replies</p>
           </div>
         </div>
       </div>
@@ -333,7 +333,7 @@ function ChatPanel() {
       <div className="flex-1 space-y-2 min-h-[180px]">
         {msgs === 0 && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-sm" style={{ color: "#f2ece0" }}>Tap to start the chat demo</p>
+            <p className="text-base" style={{ color: "#f2ece0" }}>Tap to start the chat demo</p>
           </div>
         )}
         {chatScript.slice(0, msgs).map((m, i) => (
@@ -410,7 +410,7 @@ function BookingPanel() {
         </div>
         <div>
           <p className="text-base font-bold" style={{ color: "#f2ece0", fontFamily: "var(--font-display)" }}>Smart Booking</p>
-          <p className="text-sm" style={{ color: "#f2ece0" }}>AI confirms instantly · No back-and-forth</p>
+          <p className="text-base" style={{ color: "#f2ece0" }}>AI confirms instantly · No back-and-forth</p>
         </div>
       </div>
 
