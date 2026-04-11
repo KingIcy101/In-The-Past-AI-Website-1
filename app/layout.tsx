@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import FloatingNav from "@/components/layout/FloatingNav";
 import FloatingCTA from "@/components/layout/FloatingCTA";
+import Footer from "@/components/layout/Footer";
 import VoiceWidget from "@/components/layout/VoiceWidget";
 import CustomCursor from "@/components/ui/CustomCursor";
 import AuraBackground from "@/components/ui/AuraBackground";
@@ -44,6 +45,7 @@ export default function RootLayout({
           <FloatingNav />
           <main>{children}</main>
           <FloatingCTA />
+          <Footer />
           <VoiceWidget />
         </CalModalProvider>
       </body>
