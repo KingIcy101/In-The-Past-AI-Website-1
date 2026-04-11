@@ -413,7 +413,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row flex-wrap gap-3"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 items-center sm:items-start"
             >
               <button
                 onClick={openCal}
@@ -448,7 +448,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex items-center gap-4 flex-wrap"
+              className="flex items-center gap-4 flex-wrap justify-center sm:justify-start"
             >
               {[
                 { val: "42,680+", label: "Calls" },
