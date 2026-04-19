@@ -417,39 +417,12 @@ export default function FunnelPage() {
       </section>
 
       {/* ── RISK REVERSAL ─────────────────────────────────────────────────── */}
-      <section className="px-6 pt-20 pb-8">
-        <div className="max-w-2xl mx-auto">
-          <div
-            className="rounded-2xl p-8 text-center"
-            style={{
-              background: "#120c08",
-              border: "1px solid rgba(224,136,60,0.3)",
-              boxShadow: "0 0 32px rgba(224,136,60,0.07)",
-            }}
-          >
-            <p style={{ fontSize: "2rem", marginBottom: 12 }}>🛡️</p>
-            <h3
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.1rem,2.5vw,1.4rem)",
-                fontWeight: 700,
-                color: "#f2ece0",
-                lineHeight: 1.35,
-              }}
-            >
-              If you are not live in 7 days, your first month is free.
-            </h3>
-            <p className="mt-4" style={{ color: "#9a8e84", fontSize: "0.9rem", lineHeight: 1.7 }}>
-              We have never missed that window. But if we do, you do not pay until it is working.
-            </p>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ── URGENCY ───────────────────────────────────────────────────────── */}
       <div className="px-6 pt-6 pb-2 text-center">
         <p style={{ color: "#9a8e84", fontSize: "0.9rem", fontStyle: "italic" }}>
-          We only onboard 5 new clients per month to ensure quality.
+          We only onboard 10 new clients at a time to ensure we personally work with each one.
         </p>
       </div>
 
