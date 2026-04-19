@@ -155,7 +155,7 @@ export default function FunnelPage() {
         >
           Book Your Free 30-Min Strategy Call →
         </button>
-        <p className="mt-4 text-sm" style={{ color: "#7a6e62" }}>
+        <p className="mt-4 text-sm" style={{ color: "#9a8e84" }}>
           No credit card &nbsp;·&nbsp; No commitment &nbsp;·&nbsp; Just a conversation
         </p>
       </section>
@@ -177,7 +177,7 @@ export default function FunnelPage() {
                 >
                   {item.stat}
                 </span>
-                <span style={{ fontSize: "0.78rem", color: "#7a6e62", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                <span style={{ fontSize: "0.9rem", color: "#9a8e84", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>
                   {item.label}
                 </span>
               </div>
@@ -215,7 +215,7 @@ export default function FunnelPage() {
                 >
                   {card.title}
                 </h3>
-                <p style={{ color: "#7a6e62", fontSize: "0.9rem", lineHeight: 1.7 }}>{card.body}</p>
+                <p style={{ color: "#9a8e84", fontSize: "0.9rem", lineHeight: 1.7 }}>{card.body}</p>
               </div>
             ))}
           </div>
@@ -262,8 +262,8 @@ export default function FunnelPage() {
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="mt-5 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <p style={{ color: "#f2ece0", fontSize: "0.88rem", fontWeight: 600 }}>{t.name}</p>
-                  <p style={{ color: "#7a6e62", fontSize: "0.8rem", marginTop: 2 }}>{t.title}</p>
+                  <p style={{ color: "#f2ece0", fontSize: "0.9rem", fontWeight: 600 }}>{t.name}</p>
+                  <p style={{ color: "#9a8e84", fontSize: "0.875rem", marginTop: 2 }}>{t.title}</p>
                 </div>
               </div>
             ))}
@@ -305,7 +305,7 @@ export default function FunnelPage() {
                 >
                   {step.title}
                 </h3>
-                <p style={{ color: "#7a6e62", fontSize: "0.9rem", lineHeight: 1.7 }}>{step.body}</p>
+                <p style={{ color: "#9a8e84", fontSize: "0.9rem", lineHeight: 1.7 }}>{step.body}</p>
               </div>
             ))}
           </div>
@@ -368,7 +368,7 @@ export default function FunnelPage() {
               Then{" "}
               <span style={{ color: "#e0883c" }}>$850/mo</span>
             </p>
-            <p className="mt-2" style={{ color: "#7a6e62", fontSize: "0.85rem" }}>
+            <p className="mt-2" style={{ color: "#9a8e84", fontSize: "0.9rem" }}>
               Most clients recover setup cost in their first 2 bookings.
             </p>
           </div>
@@ -430,7 +430,7 @@ export default function FunnelPage() {
             >
               If you are not live in 7 days, your first month is free.
             </h3>
-            <p className="mt-4" style={{ color: "#7a6e62", fontSize: "0.9rem", lineHeight: 1.7 }}>
+            <p className="mt-4" style={{ color: "#9a8e84", fontSize: "0.9rem", lineHeight: 1.7 }}>
               We have never missed that window. But if we do, you do not pay until it is working.
             </p>
           </div>
@@ -439,7 +439,7 @@ export default function FunnelPage() {
 
       {/* ── URGENCY ───────────────────────────────────────────────────────── */}
       <div className="px-6 pt-6 pb-2 text-center">
-        <p style={{ color: "#7a6e62", fontSize: "0.85rem", fontStyle: "italic" }}>
+        <p style={{ color: "#9a8e84", fontSize: "0.9rem", fontStyle: "italic" }}>
           We only onboard 5 new clients per month to ensure quality.
         </p>
       </div>
@@ -458,7 +458,7 @@ export default function FunnelPage() {
             >
               Book your free 30-min strategy call.
             </h2>
-            <p className="mt-3" style={{ color: "#7a6e62", fontSize: "0.95rem" }}>
+            <p className="mt-3" style={{ color: "#9a8e84", fontSize: "0.95rem" }}>
               See exactly how it would work for your business. No pitch, no pressure.
             </p>
           </div>
@@ -505,7 +505,7 @@ export default function FunnelPage() {
         >
           Book Your Free 30-Min Strategy Call →
         </button>
-        <p className="mt-4 text-xs" style={{ color: "#7a6e62" }}>
+        <p className="mt-4 text-xs" style={{ color: "#9a8e84" }}>
           No credit card &nbsp;·&nbsp; No commitment &nbsp;·&nbsp; Just a conversation
         </p>
       </section>
