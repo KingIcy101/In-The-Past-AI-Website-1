@@ -69,13 +69,21 @@ const VALUE_ITEMS = [
 ];
 
 const INDUSTRIES = [
-  "Dental Offices",
-  "Chiropractic",
-  "Law Firms",
-  "Real Estate",
-  "Med Spas",
-  "Home Services",
-  "Any service business that runs on calls",
+  { label: "Dental Offices",        icon: "🦷" },
+  { label: "Chiropractic",          icon: "🦴" },
+  { label: "Law Firms",             icon: "⚖️" },
+  { label: "Real Estate",           icon: "🏠" },
+  { label: "Med Spas",              icon: "💆" },
+  { label: "Home Services",         icon: "🔧" },
+  { label: "Auto Body Shops",       icon: "🚗" },
+  { label: "Physical Therapy",      icon: "🏃" },
+  { label: "Veterinary Clinics",    icon: "🐾" },
+  { label: "Insurance Agencies",    icon: "🛡️" },
+  { label: "Roofing & HVAC",        icon: "🏗️" },
+  { label: "Financial Advisors",    icon: "📊" },
+  { label: "Plastic Surgery",       icon: "✨" },
+  { label: "Staffing Agencies",     icon: "👥" },
+  { label: "Any call-driven business", icon: "📞" },
 ];
 
 const TRUST_STATS = [
@@ -392,15 +400,16 @@ export default function FunnelPage() {
           <div className="flex flex-wrap justify-center gap-3">
             {INDUSTRIES.map((ind) => (
               <span
-                key={ind}
-                className="px-4 py-2 rounded-full text-sm font-medium"
+                key={ind.label}
+                className="px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 hover:border-orange-400/40"
                 style={{
                   background: "#120c08",
-                  border: "1px solid rgba(224,136,60,0.15)",
-                  color: "#a39080",
+                  border: "1px solid rgba(224,136,60,0.18)",
+                  color: "#d4c8be",
                 }}
               >
-                {ind}
+                <span>{ind.icon}</span>
+                {ind.label}
               </span>
             ))}
           </div>
