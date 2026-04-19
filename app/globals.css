@@ -12,6 +12,18 @@
 
   --font-display: "Plus Jakarta Sans", sans-serif;
   --font-sans: "Inter", sans-serif;
+
+  /* ── Color aliases for hero components ── */
+  --color-bg-primary: #0a0704;
+  --color-bg-surface: #120c08;
+  --color-bg-elevated: #1A1A1A;
+  --color-accent: #e0883c;
+  --color-accent-hover: #D97706;
+  --color-accent-subtle: rgba(224,136,60,0.1);
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A3A3A3;
+  --color-text-muted: #6B7280;
+  --color-glow: rgba(224,136,60,0.25);
 }
 
 @keyframes ticker {
@@ -67,7 +79,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Ambient aura drift animations — translate only, no scale (avoids blur re-rasterisation) */
+/* Ambient aura drift animations */
 @keyframes aura-drift-1 {
   0%,  100% { transform: translate(0,     0);    }
   30%        { transform: translate(7vw,   12vh); }
@@ -205,7 +217,7 @@ body::before {
   animation: cursor-flash 1.6s ease-in-out infinite;
 }
 
-/* ── Button shine sweep ─────────────────────────────────────────── */
+/* Button shine sweep */
 .btn-shine {
   position: relative;
   overflow: hidden;
@@ -227,11 +239,11 @@ body::before {
   transition: left 0.55s ease;
 }
 
-/* ── Pause testimonial tickers on hover ─────────────────────────── */
+/* Pause testimonial tickers on hover */
 .ticker-wrap:hover .ticker         { animation-play-state: paused; }
 .ticker-reverse-wrap:hover .ticker-reverse { animation-play-state: paused; }
 
-/* ── Nav CTA glow pulse ─────────────────────────────────────────── */
+/* Nav CTA glow pulse */
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 14px rgba(224,136,60,0.45), 0 0 28px rgba(224,136,60,0.2), 0 2px 10px rgba(0,0,0,0.3); }
   50%       { box-shadow: 0 0 22px rgba(224,136,60,0.7), 0 0 44px rgba(224,136,60,0.32), 0 2px 10px rgba(0,0,0,0.3); }

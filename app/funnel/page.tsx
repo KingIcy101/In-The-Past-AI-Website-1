@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-const CAL_URL = "https://cal.com/mateo-valdizan/discoverycall"; // ← swap with real URL
+const CAL_URL = "https://cal.com/mateo-valdizan/discoverycall"; 
 
 const PAIN_CARDS = [
   {

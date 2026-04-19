@@ -1,4 +1,5 @@
-import Hero from "@/components/sections/Hero";
+import HeroSection from "@/components/hero/HeroSection";
+import Stats from "@/components/hero/Stats";
 import PainPoints from "@/components/sections/PainPoints";
 import LiveCounter from "@/components/sections/LiveCounter";
 import DemoSection from "@/components/sections/DemoSection";
@@ -14,7 +15,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroSection />
+      <Stats />
       <LiveCounter />
       <PainPoints />
       <DemoSection />
