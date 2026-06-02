@@ -197,6 +197,11 @@ body::before {
 /* Custom cursor */
 @media (pointer: fine) {
   * { cursor: none !important; }
+
+  .intake-embed-shell,
+  .intake-embed-shell * {
+    cursor: auto !important;
+  }
 }
 
 @keyframes cursor-flash {

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 export default function IntakePage() {
   return (
     <div
+      className="intake-embed-shell"
       style={{
         position: "fixed",
         inset: 0,

@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function CustomCursor() {
+  const pathname = usePathname();
+  const disabled = pathname === "/intake" || pathname.startsWith("/intake/");
   const mouseX = useMotionValue(-200);
   const mouseY = useMotionValue(-200);
   const ringX = useSpring(mouseX, { stiffness: 600, damping: 28, mass: 0.2 });
@@ -15,6 +18,7 @@ export default function CustomCursor() {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
+    if (disabled) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
     setActive(true);
 
@@ -51,9 +55,9 @@ export default function CustomCursor() {
       document.documentElement.removeEventListener("mouseleave", leave);
       document.documentElement.removeEventListener("mouseenter", enter);
     };
-  }, [mouseX, mouseY]);
+  }, [disabled, mouseX, mouseY]);
 
-  if (!active) return null;
+  if (!active || disabled) return null;
 
   return (
     <>
