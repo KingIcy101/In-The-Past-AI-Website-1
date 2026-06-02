@@ -198,6 +198,13 @@ body::before {
 @media (pointer: fine) {
   * { cursor: none !important; }
 
+  html:has(.intake-embed-shell),
+  body:has(.intake-embed-shell),
+  html:has(.intake-embed-shell) *,
+  body:has(.intake-embed-shell) * {
+    cursor: auto !important;
+  }
+
   .intake-embed-shell,
   .intake-embed-shell * {
     cursor: auto !important;
