@@ -22,7 +22,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob:",
       "frame-ancestors 'none'",
-      "frame-src https://cal.com https://*.cal.com",
+      "frame-src https://cal.com https://*.cal.com https://intake-form-sigma.vercel.app",
     ].join("; "),
   },
 ];
