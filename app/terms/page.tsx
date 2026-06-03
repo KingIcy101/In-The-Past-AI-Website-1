@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Terms of Service — In The Past AI',
@@ -28,12 +29,12 @@ export default function TermsPage() {
       <section style={{ borderBottom: '1px solid rgba(224,136,60,0.12)', paddingTop: '96px', paddingBottom: '64px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
 
-          <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: '#7a6e62', textDecoration: 'none', marginBottom: '32px' }}>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: '#7a6e62', textDecoration: 'none', marginBottom: '32px' }}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             Back to inthepast.ai
-          </a>
+          </Link>
 
           <div style={{ display: 'block', fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'rgba(224,136,60,0.12)', color: '#e0883c', borderRadius: '20px', padding: '4px 12px', marginBottom: '24px', width: 'fit-content' }}>
             Legal

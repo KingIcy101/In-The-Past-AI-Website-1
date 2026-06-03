@@ -4,6 +4,7 @@ import { useCalModal } from "@/contexts/CalModalContext";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const links = [
   { label: "Services",   href: "#services" },
@@ -49,7 +50,7 @@ export default function FloatingNav() {
           <div className="flex items-center justify-between h-16 md:h-[70px]">
 
             {/* Logo */}
-            <a href="/" className="flex items-center gap-3 flex-shrink-0">
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
               <Image src="/logo.png" alt="In The Past AI" width={44} height={44} className="object-contain" />
               <div className="flex flex-col leading-none">
                 <span
@@ -65,7 +66,7 @@ export default function FloatingNav() {
                   Any Industry · Always On
                 </span>
               </div>
-            </a>
+            </Link>
 
             {/* Center links */}
             <nav className="hidden md:flex items-center gap-1">

@@ -6,7 +6,15 @@ import { usePathname } from "next/navigation";
 
 export default function CustomCursor() {
   const pathname = usePathname();
-  const disabled = pathname === "/intake" || pathname.startsWith("/intake/");
+  const disabled =
+    pathname === "/intake" ||
+    pathname.startsWith("/intake/") ||
+    pathname === "/intake-auto-repair" ||
+    pathname.startsWith("/intake-auto-repair/") ||
+    pathname === "/portal" ||
+    pathname.startsWith("/portal/") ||
+    pathname === "/ops" ||
+    pathname.startsWith("/ops/");
   const mouseX = useMotionValue(-200);
   const mouseY = useMotionValue(-200);
   const ringX = useSpring(mouseX, { stiffness: 600, damping: 28, mass: 0.2 });
@@ -20,7 +28,7 @@ export default function CustomCursor() {
   useEffect(() => {
     if (disabled) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
-    setActive(true);
+    const activeFrame = window.requestAnimationFrame(() => setActive(true));
 
     const move = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -48,6 +56,7 @@ export default function CustomCursor() {
     document.documentElement.addEventListener("mouseenter", enter);
 
     return () => {
+      window.cancelAnimationFrame(activeFrame);
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", over);
       window.removeEventListener("mousedown", down);

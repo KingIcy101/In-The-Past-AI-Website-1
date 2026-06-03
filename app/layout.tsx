@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
-import FloatingNav from "@/components/layout/FloatingNav";
-import FloatingCTA from "@/components/layout/FloatingCTA";
-import Footer from "@/components/layout/Footer";
-import VoiceWidget from "@/components/layout/VoiceWidget";
-import CustomCursor from "@/components/ui/CustomCursor";
-import AuraBackground from "@/components/ui/AuraBackground";
-import ScrollProgress from "@/components/ui/ScrollProgress";
-import { CalModalProvider } from "@/contexts/CalModalContext";
+import SiteShell from "@/components/layout/SiteShell";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-display",
@@ -38,16 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakarta.variable} ${inter.variable}`}>
       <body>
-        <CalModalProvider>
-          <ScrollProgress />
-          <AuraBackground />
-          <CustomCursor />
-          <FloatingNav />
-          <main>{children}</main>
-          <FloatingCTA />
-          <Footer />
-          <VoiceWidget />
-        </CalModalProvider>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
