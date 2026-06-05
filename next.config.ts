@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const intakeAppOrigin = "https://intake-form-sigma.vercel.app";
+
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
@@ -22,12 +24,21 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob:",
       "frame-ancestors 'none'",
-      "frame-src https://cal.com https://*.cal.com https://intake-form-sigma.vercel.app",
+      `frame-src https://cal.com https://*.cal.com ${intakeAppOrigin}`,
     ].join("; "),
   },
 ];
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${intakeAppOrigin}/api/:path*`,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
