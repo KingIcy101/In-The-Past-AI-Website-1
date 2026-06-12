@@ -39,6 +39,18 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  async redirects() {
+    return [
+      // Canonical path names (Matt's spec). Old route names redirect to the
+      // new ones so any existing links keep working.
+      {
+        source: "/intake-auto-repair",
+        destination: "/auto-repair-intake",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
