@@ -17,12 +17,14 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // Allow the Past AI app origin so the same-origin-proxied client portal
+      // (served at /client) can load its assetPrefix'd scripts/styles/fonts/images.
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${intakeAppOrigin}`,
       "connect-src *",
       "media-src * blob:",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob:",
+      `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${intakeAppOrigin}`,
+      `font-src 'self' https://fonts.gstatic.com ${intakeAppOrigin}`,
+      `img-src 'self' data: blob: ${intakeAppOrigin}`,
       "frame-ancestors 'none'",
       `frame-src https://cal.com https://*.cal.com ${intakeAppOrigin}`,
     ].join("; "),
@@ -36,6 +38,12 @@ const nextConfig: NextConfig = {
         source: "/api/:path*",
         destination: `${intakeAppOrigin}/api/:path*`,
       },
+      // Client portal served SAME-ORIGIN through www (not an iframe), so the
+      // magic-link sign-in cookie lives on www and the portal works end-to-end
+      // on the marketing domain. Assets load from the app via assetPrefix.
+      { source: "/client", destination: `${intakeAppOrigin}/client` },
+      { source: "/client/:path*", destination: `${intakeAppOrigin}/client/:path*` },
+      { source: "/client-portal", destination: `${intakeAppOrigin}/client` },
     ];
   },
 
