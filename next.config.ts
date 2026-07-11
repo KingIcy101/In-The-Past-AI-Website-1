@@ -44,6 +44,24 @@ const nextConfig: NextConfig = {
       { source: "/client", destination: `${intakeAppOrigin}/client` },
       { source: "/client/:path*", destination: `${intakeAppOrigin}/client/:path*` },
       { source: "/client-portal", destination: `${intakeAppOrigin}/client` },
+      // Intake forms served SAME-ORIGIN too (the old <iframe> embeds died when
+      // the app shipped frame-ancestors 'none' / X-Frame-Options DENY). The
+      // app's intake page reads the pathname, so it accepts both spellings and
+      // Matt's canonical marketing paths stay: /auto-repair-intake, /dental-intake.
+      { source: "/intake", destination: `${intakeAppOrigin}/intake` },
+      // Destination = the app's real route names; the browser URL keeps the
+      // canonical www path, and the app's intake page detects the vertical
+      // from that visible pathname (it accepts both spellings).
+      { source: "/auto-repair-intake", destination: `${intakeAppOrigin}/intake-auto-repair` },
+      { source: "/dental-intake", destination: `${intakeAppOrigin}/intake-dental` },
+      // Pages the intake footer links to (A2P legal), plus the app manifest so
+      // the console stays clean. Deliberately NOT /sw.js — registering the
+      // app's service worker against the www scope would hijack the whole
+      // marketing origin; its 404 fails safe.
+      { source: "/opt-in", destination: `${intakeAppOrigin}/opt-in` },
+      { source: "/messaging-policy", destination: `${intakeAppOrigin}/messaging-policy` },
+      { source: "/manifest.webmanifest", destination: `${intakeAppOrigin}/manifest.webmanifest` },
+      { source: "/icons/:path*", destination: `${intakeAppOrigin}/icons/:path*` },
     ];
   },
 
@@ -54,6 +72,11 @@ const nextConfig: NextConfig = {
       {
         source: "/intake-auto-repair",
         destination: "/auto-repair-intake",
+        permanent: true,
+      },
+      {
+        source: "/intake-dental",
+        destination: "/dental-intake",
         permanent: true,
       },
     ];
