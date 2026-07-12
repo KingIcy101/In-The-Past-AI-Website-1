@@ -47,3 +47,19 @@ Use your own judgment. Inspect the real site and source material, choose one str
 ```text
 Read docs/claude-handoffs/itp-consulting-site-five-pods.md and execute docs/planning/goals/phase-001__itp-consulting-site-five-pods.md. Use your judgment and continue until every gate passes or a documented stop condition is reached.
 ```
+
+## Exact Claude Start
+
+Claude Code 2.1.195 supports the `fable` alias, but the local CLI must report an active login first.
+
+```bash
+cd /Users/mattbender/.codex/worktrees/zta-835-itp-five-pod-plan
+claude auth status --text
+claude -p --model fable --effort high --permission-mode auto \
+  --add-dir /Users/mattbender/projects/intake-form \
+  --add-dir /Users/mattbender/.openclaw-backup \
+  --name "ZTA-835 ITP Five Pod Website" \
+  "Read docs/claude-handoffs/itp-consulting-site-five-pods.md and execute docs/planning/goals/phase-001__itp-consulting-site-five-pods.md. Use your own judgment and continue until every gate passes or a documented stop condition is reached. Do not publish to production, alter domain aliases, or edit the intake repo."
+```
+
+If `claude auth status --text` reports `Not logged in`, Matt must run `claude auth login` once before the build can start. Do not work around the account login with copied tokens or committed credentials.
