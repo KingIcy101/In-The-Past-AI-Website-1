@@ -10,7 +10,7 @@
 
 ## Cross-Lane Agreement
 
-All five research lanes agreed that voice answering alone is commoditizing and that ITP's larger value is the workflow and internal-tool layer after the call. All lanes placed Auto and HVAC in or near the top group. Dental and Roofing were consistently attractive but carried different risks: Dental has compliance/integration friction; Roofing has seasonality and insurance-process variance.
+The five-lane synthesis concluded that voice answering alone is commoditizing and that ITP's larger value is the workflow and internal-tool layer after the call. Auto and HVAC recurred at or near the top across the independent lenses. Dental and Roofing were consistently attractive but carried different risks: Dental has compliance/integration friction; Roofing has seasonality and insurance-process variance.
 
 ## Disagreements Resolved
 

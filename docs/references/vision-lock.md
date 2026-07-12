@@ -1,7 +1,7 @@
 ---
 vision_lock: "itp-consulting-site-five-pods"
 created_at: "2026-07-12"
-canonical_repo: "/Users/mattbender/projects/In-The-Past-AI-Website-1"
+canonical_repo: "this repository"
 canonical_branch: "codex/zta-835-itp-five-pod-plan"
 mode: "build"
 status: "frozen"
@@ -39,9 +39,9 @@ Matt asked to have Claude start and run the website project as a goal until it i
 - The current industry surface is six flip cards with no routes: proof in `components/sections/Industries.tsx`.
 - The service story is still voice/chatbot-led: proof in `components/sections/WhatWeBuild.tsx`.
 - This branch is stacked on open PR #1 and includes its route, intake-wrapper, and Randy CTA commits through `1d4b602`. New five-pod commits belong only to this branch and must not be pushed back into PR #1.
-- Canonical execution worktree + branch: `/Users/mattbender/.codex/worktrees/zta-835-itp-five-pod-plan` @ `codex/zta-835-itp-five-pod-plan`.
+- Canonical execution worktree + branch: `<website-worktree>` @ `codex/zta-835-itp-five-pod-plan`.
   This branch includes the current PR #1 head (`1d4b602`) so route, CTA, and intake-wrapper proof is not tested against stale `main`.
-- Read-only source context: `/Users/mattbender/projects/intake-form` and `/Users/mattbender/.openclaw-backup`.
+- Read-only source context: `<intake-form-repo>` and `<ops-hub-repo>`.
 - Leave untouched: Vercel domain aliases, production settings, credentials, and unrelated intake/portal code.
 
 ---

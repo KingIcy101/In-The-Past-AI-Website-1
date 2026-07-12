@@ -20,7 +20,7 @@ Pinned from `docs/references/vision-lock.md`.
 - Matt-test: homepage explains the larger operations offer; five native pages are sendable; each page shows phone-to-workflow expansion; real desktop/mobile site has no blocker defects; credibility is honest.
 - Design target: `docs/design/itp-consulting-site-direction.md`.
 - Out of scope: extra verticals, fake proof, full vertical-CRM replacement, production publish.
-- Canonical execution worktree + branch: `/Users/mattbender/.codex/worktrees/zta-835-itp-five-pod-plan` @ `codex/zta-835-itp-five-pod-plan`, based on PR #1 head `1d4b602`.
+- Canonical execution worktree + branch: `<website-worktree>` @ `codex/zta-835-itp-five-pod-plan`, based on PR #1 head `1d4b602`.
 
 ## Short /goal Prompt
 
@@ -38,7 +38,7 @@ Deliver the repositioned ITP homepage and five differentiated industry pages end
 |---|---|
 | Outcome | Consulting-firm homepage plus Auto Repair, HVAC, Dental, Roofing, and Med Spa pages |
 | Verification surface | local build, lint, route readback, sitemap, real browser journeys, desktop/mobile screenshots, PR and Linear proof |
-| Constraints | current stack, isolated branch, truthful claims, intake repo read-only, no domain/production changes |
+| Constraints | current stack, isolated branch, truthful claims, both `--add-dir` context repos read-only, no domain/production changes |
 | Boundaries | five pods only; no fake proof, public pricing, or full CRM/PMS replacement |
 | Iteration policy | inspect, design, build, test, review, fix up to three passes, then verify fresh |
 | Blocked stop condition | repeated critical/high finding, missing access, production-only requirement, or unprovable claim |
@@ -55,12 +55,12 @@ Deliver the repositioned ITP homepage and five differentiated industry pages end
 
 ## Guarded Authority
 
-The executing agent may inspect, edit, test, create an isolated branch, commit, push, and open/update a PR. It may not publish to production, change domains, alter credentials, write to the intake repo, or make customer-facing commitments.
+The executing agent may inspect, edit, test, create an isolated branch, commit, push, and open/update a PR in this website repo. It may not publish to production, change domains, alter credentials, write to either `--add-dir` context repo, or make customer-facing commitments.
 
 ## Source Context
 
-- Repo: `/Users/mattbender/projects/In-The-Past-AI-Website-1`
-- Execution worktree: `/Users/mattbender/.codex/worktrees/zta-835-itp-five-pod-plan`
+- Repo: this repository
+- Execution worktree: `<website-worktree>`
 - Source phase: `docs/planning/phase-001-itp-consulting-site-five-pods/plan.md`
 - Subphases: `a/plan.md` through `e/plan.md`
 - Current adjacent work: website PR #1 (`codex/fix-portal-wrapper-route`)
@@ -72,11 +72,11 @@ The executing agent may inspect, edit, test, create an isolated branch, commit, 
 - Planning docs: current phase and research files
 - Process docs: repo `AGENTS.md` and `CLAUDE.md`
 - External context, read-only:
-  - `/Users/mattbender/projects/intake-form/docs/verticals/auto-repair.md`
-  - `/Users/mattbender/projects/intake-form/docs/verticals/roofing.md`
-  - `/Users/mattbender/projects/intake-form/docs/verticals/operator-pod-options.md`
-  - `/Users/mattbender/projects/intake-form/docs/planning/MARKET-PODS-BUILD-PACKAGE-2026-07-01.md`
-  - `/Users/mattbender/projects/intake-form/docs/planning/dental-pod/RESEARCH-BRIEF.md`
+  - `<intake-form-repo>/docs/verticals/auto-repair.md`
+  - `<intake-form-repo>/docs/verticals/roofing.md`
+  - `<intake-form-repo>/docs/verticals/operator-pod-options.md`
+  - `<intake-form-repo>/docs/planning/MARKET-PODS-BUILD-PACKAGE-2026-07-01.md`
+  - `<intake-form-repo>/docs/planning/dental-pod/RESEARCH-BRIEF.md`
 - Linear: `ZTA-770`, `ZTA-835`, `ZTA-778`, `ZTA-830`, `ZTA-800`, `ZTA-803`
 - Browser workflows: homepage -> each industry page -> discovery CTA; existing legal/intake/demo routes
 
@@ -121,6 +121,11 @@ N/A; this website phase has no workbook source.
 |---|---|---|---|
 | Homepage story | `/` | operations positioning and five-pod navigation | pending |
 | Five pod journeys | five routes | native copy and working CTA | pending |
+| Legal routes | `/privacy`, `/terms`, `/subprocessors` | all load without regression | pending |
+| Intake wrappers | `/intake`, `/auto-repair-intake`, `/dental-intake` | same-origin wrapper journeys load | pending |
+| Portal wrappers | `/client`, `/client-portal` | current wrapper behavior preserved | pending |
+| Demo/Vera | homepage voice demo and `/vera-test` | demo entrypoints remain usable | pending |
+| Booking CTA | homepage and all five pod pages | current configured booking path opens or fallback appears | pending |
 | Mobile | 390px or equivalent | no overflow/overlap; touch-safe controls | pending |
 | Desktop | 1440px+ | coherent hierarchy and next-section visibility | pending |
 
@@ -207,7 +212,7 @@ Out of scope: Restaurants and other verticals, intake-repo writes, production pu
 | Claims | source-to-copy audit | every claim sourced or removed | revert claim copy; owner Claude |
 | Browser | fresh desktop/mobile run | no blocker visual/interaction defects | revert affected UI commit; owner Claude |
 | PR/CI | `gh pr view` and check readback | branch pushed, PR reviewable, checks green or exact blocker | close/revert PR; owner Matt/Claude |
-| Product-truth | Matt-test journey in fresh real app | homepage and one real pod journey complete against current site content | revert affected commit; owner Claude |
+| Product-truth | Matt-test journeys in fresh real app | homepage and every one of the five pod journeys complete against current site content | revert affected commit; owner Claude |
 | Final review | fresh verifier | no blocker/major findings | return to fix loop |
 
 ## Product-Truth Launch Gate
@@ -249,7 +254,7 @@ Expected verdict shape:
 
 ## Final Report Requirements
 
-Report branch, commit, PR, lint/build results, six-route screenshot paths, claim audit, current deploy state, Linear update, scope cuts, remaining limitations, and exact blocker if any. Keep production status explicit.
+Report branch, commit, PR, lint/build results, homepage plus five route screenshot paths, claim audit, current deploy state, Linear update, scope cuts, remaining limitations, and exact blocker if any. Keep production status explicit.
 
 ## Strategy Confidence Loop
 

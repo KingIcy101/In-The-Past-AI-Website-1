@@ -16,6 +16,8 @@ Restaurants move out of the first-wave website build. Veterinary is the best six
 
 The scoring prioritizes ITP's real operating position, not abstract total-addressable market size.
 
+This is a directional decision model, not a published market index. Scores combine the cited external evidence with verified internal readiness from Linear and the source repos. Each category is capped at the weight shown in its column; higher is better. Execution readiness covers existing operator/product/proof work, phone pain covers urgency and lost-revenue clarity, workflow expansion covers repeatable post-call systems, buyer economics covers ability to support a services retainer, operator GTM covers owner reachability and niche learnability, competitive room covers the space left beyond incumbent voice features, and deployability is risk-adjusted for compliance/integration friction.
+
 | Pod | Execution readiness (20) | Phone/revenue pain (20) | Workflow expansion (20) | Buyer economics (15) | Operator GTM (10) | Competitive room (10) | Deployability (5) | Total |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | HVAC | 17 | 20 | 20 | 14 | 9 | 6 | 5 | **91** |
@@ -52,10 +54,10 @@ The scoring prioritizes ITP's real operating position, not abstract total-addres
 - Linear umbrella: `ZTA-770`.
 - Linear website implementation: `ZTA-835`.
 - Linear pod framework: `ZTA-778`, `ZTA-800`, `ZTA-803`, and dental `ZTA-830`.
-- Read-only product/pod source: `/Users/mattbender/projects/intake-form/docs/planning/MARKET-PODS-BUILD-PACKAGE-2026-07-01.md`.
-- Dental source: `/Users/mattbender/projects/intake-form/docs/planning/dental-pod/RESEARCH-BRIEF.md`.
-- Operator source: `/Users/mattbender/projects/intake-form/docs/verticals/operator-pod-options.md`.
+- Read-only product/pod source: `<intake-form-repo>/docs/planning/MARKET-PODS-BUILD-PACKAGE-2026-07-01.md`.
+- Dental source: `<intake-form-repo>/docs/planning/dental-pod/RESEARCH-BRIEF.md`.
+- Operator source: `<intake-form-repo>/docs/verticals/operator-pod-options.md`.
 
 ## Confidence And Open Risks
 
-Confidence is 86% on the five-pod portfolio. The four stable choices are Auto, HVAC, Dental, and Roofing. Med Spa wins the fifth slot because its buyer economics and existing product work outweigh higher compliance and integration friction. Revisit the fifth slot after two weeks of operator conversations or five qualified discovery calls in Med Spa and Veterinary.
+Directional confidence is 86% on the five-pod portfolio based on the evidence and internal-readiness weighting above. The four stable choices are Auto, HVAC, Dental, and Roofing. Med Spa wins the fifth slot because its buyer economics and existing product work outweigh higher compliance and integration friction. Revisit the fifth slot after two weeks of operator conversations or five qualified discovery calls in Med Spa and Veterinary.

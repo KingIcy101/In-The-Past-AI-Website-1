@@ -14,10 +14,10 @@ Build the strongest honest version of `www.inthepast.ai` as a vertical AI operat
 
 ## Repos
 
-- Primary execution worktree: `/Users/mattbender/.codex/worktrees/zta-835-itp-five-pod-plan`
-- Canonical repo: `/Users/mattbender/projects/In-The-Past-AI-Website-1`
-- Read-only source context: `/Users/mattbender/projects/intake-form`
-- Supplemental ops context: `/Users/mattbender/.openclaw-backup`
+- Primary execution worktree: `<website-worktree>`
+- Canonical repo: this repository
+- Read-only source context: `<intake-form-repo>`
+- Supplemental read-only ops context: `<ops-hub-repo>`
 
 The intake repo contains pod, operator, portal, and dental research. Treat it as source context only. Do not write back to it unless Matt separately approves a dedicated branch/PR.
 
@@ -38,7 +38,7 @@ Use your own judgment. Inspect the real site and source material, choose one str
 
 - Do not publish to production or alter domain aliases.
 - Do not invent customers, logos, testimonials, metrics, founder history, podcasts, integrations, or compliance status.
-- Do not edit the intake repo.
+- Do not edit either repo passed through `--add-dir`; both context repos are read-only.
 - Do not expand to additional verticals before the five-page definition of done is met.
 - Stop for destructive changes, missing access, unresolved critical/high findings, or any customer-facing claim that cannot be verified.
 
@@ -53,13 +53,13 @@ Read docs/claude-handoffs/itp-consulting-site-five-pods.md and execute docs/plan
 Claude Code 2.1.195 supports the `fable` alias, but the local CLI must report an active login first.
 
 ```bash
-cd /Users/mattbender/.codex/worktrees/zta-835-itp-five-pod-plan
+cd <website-worktree>
 claude auth status --text
 claude -p --model fable --effort high --permission-mode auto \
-  --add-dir /Users/mattbender/projects/intake-form \
-  --add-dir /Users/mattbender/.openclaw-backup \
+  --add-dir <intake-form-repo> \
+  --add-dir <ops-hub-repo> \
   --name "ZTA-835 ITP Five Pod Website" \
-  "Read docs/claude-handoffs/itp-consulting-site-five-pods.md and execute docs/planning/goals/phase-001__itp-consulting-site-five-pods.md. Use your own judgment and continue until every gate passes or a documented stop condition is reached. Do not publish to production, alter domain aliases, or edit the intake repo."
+  "Read docs/claude-handoffs/itp-consulting-site-five-pods.md and execute docs/planning/goals/phase-001__itp-consulting-site-five-pods.md. Use your own judgment and continue until every gate passes or a documented stop condition is reached. Do not publish to production, alter domain aliases, or edit either --add-dir context repo."
 ```
 
 If `claude auth status --text` reports `Not logged in`, Matt must run `claude auth login` once before the build can start. Do not work around the account login with copied tokens or committed credentials.

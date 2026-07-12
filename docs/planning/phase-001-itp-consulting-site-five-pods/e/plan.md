@@ -37,6 +37,16 @@ Prove that the homepage and five industry routes form one coherent, working publ
 | booking embed failure fallback | required | required |
 | reduced-motion journey | required | required |
 
+## Existing-Route Regression Matrix
+
+| Surface | Routes/actions | Required proof |
+|---|---|---|
+| Legal | `/privacy`, `/terms`, `/subprocessors` | HTTP/browser load with no new console error |
+| Intake wrappers | `/intake`, `/auto-repair-intake`, `/dental-intake` | same-origin wrapper loads and footer/legal links remain usable |
+| Portal wrappers | `/client`, `/client-portal` | current wrapper behavior preserved |
+| Demo/Vera | homepage voice demo and `/vera-test` | launch/close journey remains usable |
+| Booking | homepage and all five industry CTAs | configured booking path opens; visible fallback exists on embed failure |
+
 ## Recovery And Safety
 Maximum three fix passes. Stop with evidence on repeated blockers, missing access, production-only requirements, or unresolved high-risk claims.
 
