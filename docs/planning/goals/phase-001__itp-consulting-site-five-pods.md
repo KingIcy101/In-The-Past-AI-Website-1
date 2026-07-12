@@ -38,7 +38,7 @@ Deliver the repositioned ITP homepage and five differentiated industry pages end
 |---|---|
 | Outcome | Consulting-firm homepage plus Auto Repair, HVAC, Dental, Roofing, and Med Spa pages |
 | Verification surface | local build, lint, route readback, sitemap, real browser journeys, desktop/mobile screenshots, PR and Linear proof |
-| Constraints | current stack, isolated branch, truthful claims, both `--add-dir` context repos read-only, no domain/production changes |
+| Constraints | current stack, isolated branch, truthful claims, external context repos not mounted, no domain/production changes |
 | Boundaries | five pods only; no fake proof, public pricing, or full CRM/PMS replacement |
 | Iteration policy | inspect, design, build, test, review, fix up to three passes, then verify fresh |
 | Blocked stop condition | repeated critical/high finding, missing access, production-only requirement, or unprovable claim |
@@ -55,7 +55,7 @@ Deliver the repositioned ITP homepage and five differentiated industry pages end
 
 ## Guarded Authority
 
-The executing agent may inspect, edit, test, create an isolated branch, commit, push, and open/update a PR in this website repo. It may not publish to production, change domains, alter credentials, write to either `--add-dir` context repo, or make customer-facing commitments.
+The executing agent may inspect, edit, test, create an isolated branch, commit, push, and open/update a PR in this website repo. It may not publish to production, change domains, alter credentials, mount or edit the intake/ops repos, or make customer-facing commitments.
 
 ## Source Context
 
@@ -71,12 +71,7 @@ The executing agent may inspect, edit, test, create an isolated branch, commit, 
 
 - Planning docs: current phase and research files
 - Process docs: repo `AGENTS.md` and `CLAUDE.md`
-- External context, read-only:
-  - `<intake-form-repo>/docs/verticals/auto-repair.md`
-  - `<intake-form-repo>/docs/verticals/roofing.md`
-  - `<intake-form-repo>/docs/verticals/operator-pod-options.md`
-  - `<intake-form-repo>/docs/planning/MARKET-PODS-BUILD-PACKAGE-2026-07-01.md`
-  - `<intake-form-repo>/docs/planning/dental-pod/RESEARCH-BRIEF.md`
+- External source context: already distilled into `research-brief.md`, `deep-sweep-findings.md`, and the phase plan. Original intake/ops repos are provenance only and are not mounted during execution.
 - Linear: `ZTA-770`, `ZTA-835`, `ZTA-778`, `ZTA-830`, `ZTA-800`, `ZTA-803`
 - Browser workflows: homepage -> each industry page -> discovery CTA; existing legal/intake/demo routes
 
@@ -124,6 +119,8 @@ N/A; this website phase has no workbook source.
 | Legal routes | `/privacy`, `/terms`, `/subprocessors` | all load without regression | pending |
 | Intake wrappers | `/intake`, `/auto-repair-intake`, `/dental-intake` | same-origin wrapper journeys load | pending |
 | Portal wrappers | `/client`, `/client-portal` | current wrapper behavior preserved | pending |
+| Funnel wrapper | `/funnel` | current same-origin funnel behavior preserved | pending |
+| Portal entry | `/portal` | current redirect/wrapper behavior preserved | pending |
 | Demo/Vera | homepage voice demo and `/vera-test` | demo entrypoints remain usable | pending |
 | Booking CTA | homepage and all five pod pages | current configured booking path opens or fallback appears | pending |
 | Mobile | 390px or equivalent | no overflow/overlap; touch-safe controls | pending |

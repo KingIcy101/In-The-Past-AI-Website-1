@@ -41,7 +41,7 @@ Matt asked to have Claude start and run the website project as a goal until it i
 - This branch is stacked on open PR #1 and includes its route, intake-wrapper, and Randy CTA commits through `1d4b602`. New five-pod commits belong only to this branch and must not be pushed back into PR #1.
 - Canonical execution worktree + branch: `<website-worktree>` @ `codex/zta-835-itp-five-pod-plan`.
   This branch includes the current PR #1 head (`1d4b602`) so route, CTA, and intake-wrapper proof is not tested against stale `main`.
-- Read-only source context: `<intake-form-repo>` and `<ops-hub-repo>`.
+- Source context from the intake and ops repos has been distilled into the committed research brief and deep-sweep findings. The live context repos are intentionally not mounted into the autonomous build.
 - Leave untouched: Vercel domain aliases, production settings, credentials, and unrelated intake/portal code.
 
 ---
