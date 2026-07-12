@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const CAL_URL = "https://cal.com/mateo-valdizan/discoverycall";
+const CAL_URL = "https://cal.com/randy-mendez/ai-receptionist-discovery";
 
 const PAIN_CARDS = [
   {

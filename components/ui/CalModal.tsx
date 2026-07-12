@@ -81,7 +81,7 @@ export default function CalModal({ isOpen, onClose }: CalModalProps) {
             </div>
 
             <iframe
-              src="https://cal.com/mateo-valdizan/discoverycall?embed=true&theme=dark"
+              src="https://cal.com/randy-mendez/ai-receptionist-discovery?embed=true&theme=dark"
               className="w-full"
               style={{ height: "calc(100% - 61px)", border: "none" }}
               title="Book a Discovery Call"

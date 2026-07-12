@@ -17,7 +17,7 @@ export default function PortalPage() {
       }}
     >
       <iframe
-        src="https://intake-form-sigma.vercel.app/ops"
+        src="https://intake-form-sigma.vercel.app/portal"
         title="Past AI Operator Portal"
         style={{
           width: "100%",
