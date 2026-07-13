@@ -1,10 +1,12 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "In The Past AI — AI Receptionists That Never Sleep";
+export const alt = "In The Past AI — AI operations for local businesses";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Repositioned OG (validation amendment 5): operations-consultancy frame on the
+// light editorial canvas, no absolute "100% Calls answered" claim.
 export default function OGImage() {
   return new ImageResponse(
     (
@@ -14,95 +16,94 @@ export default function OGImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           justifyContent: "center",
-          background: "#0E0B08",
-          padding: "80px",
+          background: "#F7F4EF",
+          padding: "88px",
           position: "relative",
         }}
       >
-        {/* Amber glow */}
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "800px",
-          height: "300px",
-          background: "radial-gradient(ellipse at center top, rgba(212,148,74,0.25) 0%, transparent 70%)",
-          display: "flex",
-        }} />
-
-        {/* Badge */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          background: "rgba(212,148,74,0.1)",
-          border: "1px solid rgba(212,148,74,0.3)",
-          borderRadius: "100px",
-          padding: "8px 20px",
-          marginBottom: "32px",
-        }}>
-          <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4ade80", display: "flex" }} />
-          <span style={{ color: "#D4944A", fontSize: "16px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            AI Voice Receptionist
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: "28px",
+          }}
+        >
+          <span
+            style={{
+              color: "#B25E1B",
+              fontSize: "18px",
+              fontWeight: 600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              display: "flex",
+            }}
+          >
+            AI operations for local businesses
           </span>
         </div>
 
-        {/* Headline */}
-        <div style={{
-          fontSize: "72px",
-          fontWeight: 800,
-          color: "#F2E8D6",
-          textAlign: "center",
-          lineHeight: 1.1,
-          marginBottom: "24px",
-          maxWidth: "900px",
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}>
-          Never Miss a Call.{" "}
-          <span style={{ color: "#D4944A" }}>Never Lose a Lead.</span>
+        <div
+          style={{
+            fontSize: "68px",
+            fontWeight: 600,
+            color: "#1A1712",
+            lineHeight: 1.08,
+            marginBottom: "28px",
+            maxWidth: "980px",
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
+          Start with the calls you miss. Build the system around them.
         </div>
 
-        {/* Subtext */}
-        <div style={{
-          fontSize: "24px",
-          color: "rgba(242,232,214,0.65)",
-          textAlign: "center",
-          maxWidth: "700px",
-          lineHeight: 1.5,
-          marginBottom: "48px",
-          display: "flex",
-        }}>
-          AI receptionists that answer 24/7, book appointments, and capture every lead — live within days.
+        <div
+          style={{
+            fontSize: "26px",
+            color: "#5B5347",
+            maxWidth: "860px",
+            lineHeight: 1.5,
+            display: "flex",
+          }}
+        >
+          Answer, follow up, book, report, and build the internal tools your business runs on — for auto repair, HVAC, dental, roofing, and med spas.
         </div>
 
-        {/* Stats */}
-        <div style={{ display: "flex", gap: "60px" }}>
-          {[["< 4s", "Pickup time"], ["24/7", "Always live"], ["100%", "Calls answered"]].map(([val, label]) => (
-            <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#D4944A" }}>{val}</span>
-              <span style={{ fontSize: "16px", color: "rgba(242,232,214,0.5)" }}>{label}</span>
+        <div style={{ display: "flex", gap: "12px", marginTop: "44px" }}>
+          {["Auto Repair", "HVAC", "Dental", "Roofing", "Med Spa"].map((label) => (
+            <div
+              key={label}
+              style={{
+                display: "flex",
+                border: "1px solid #E4DDD1",
+                background: "#FFFFFF",
+                borderRadius: "100px",
+                padding: "10px 20px",
+                fontSize: "20px",
+                color: "#1A1712",
+              }}
+            >
+              {label}
             </div>
           ))}
         </div>
 
-        {/* Domain */}
-        <div style={{
-          position: "absolute",
-          bottom: "40px",
-          right: "60px",
-          fontSize: "18px",
-          color: "rgba(212,148,74,0.5)",
-          display: "flex",
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "44px",
+            right: "64px",
+            fontSize: "20px",
+            color: "#8A8073",
+            display: "flex",
+          }}
+        >
           inthepast.ai
         </div>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }

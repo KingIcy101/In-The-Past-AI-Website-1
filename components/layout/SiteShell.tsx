@@ -2,26 +2,24 @@
 
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import FloatingNav from "@/components/layout/FloatingNav";
-import FloatingCTA from "@/components/layout/FloatingCTA";
+import SiteNav from "@/components/layout/SiteNav";
 import Footer from "@/components/layout/Footer";
 import VoiceWidget from "@/components/layout/VoiceWidget";
-import CustomCursor from "@/components/ui/CustomCursor";
-import AuraBackground from "@/components/ui/AuraBackground";
-import ScrollProgress from "@/components/ui/ScrollProgress";
 import { CalModalProvider } from "@/contexts/CalModalContext";
 
-const EMBED_ROUTE_PREFIXES = [
-  "/intake",
-  "/intake-auto-repair",
-  "/portal",
-  "/ops",
-];
+// Embed routes (intake/portal/ops wrappers) render bare — no marketing chrome.
+const EMBED_ROUTE_PREFIXES = ["/intake", "/intake-auto-repair", "/portal", "/ops"];
 
 function isEmbedRoute(pathname: string) {
-  return EMBED_ROUTE_PREFIXES.some(route => pathname === route || pathname.startsWith(`${route}/`));
+  return EMBED_ROUTE_PREFIXES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
 }
 
+// Streamlined shell (validation amendment 4): route-aware SiteNav, real footer,
+// and exactly ONE persistent floating action (the Vera voice widget). The
+// custom cursor, aura orbs, scroll-progress bar, and second floating CTA are
+// removed with the dark theme.
 export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
@@ -31,12 +29,8 @@ export default function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <CalModalProvider>
-      <ScrollProgress />
-      <AuraBackground />
-      <CustomCursor />
-      <FloatingNav />
-      <main>{children}</main>
-      <FloatingCTA />
+      <SiteNav />
+      <main className="pt-[68px]">{children}</main>
       <Footer />
       <VoiceWidget />
     </CalModalProvider>

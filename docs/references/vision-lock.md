@@ -48,4 +48,4 @@ Matt asked to have Claude start and run the website project as a goal until it i
 Frozen from Matt's direct 2026-07-12 build instruction. New scope requires a dated amendment approved by Matt.
 
 ### Amendments
-- None.
+- 2026-07-12 (Claude, validation pass): folded 10 build amendments into subphase acceptance — see `docs/planning/phase-001-itp-consulting-site-five-pods/build-amendments.md`. Adds route-aware global chrome, real reduced-motion, accessible booking modal + embed fallback, metadata/OG reposition, built-vs-roadmap claim honesty, /funnel noindex-park, and Matt's small aesthetic sector buttons for the five pods (homepage + nav + footer). No change to the frozen five-pod outcome or the no-production-publish boundary.
