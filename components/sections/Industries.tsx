@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { IconTooth, IconScales, IconMedicalCross, IconHomeWrench, IconBuilding, IconCar } from "@/components/ui/Icons";
 import ScrollReveal3D from "@/components/ui/ScrollReveal3D";
+import SectorButtons from "@/components/marketing/SectorButtons";
 
 const industries = [
   {
@@ -256,6 +257,17 @@ export default function Industries() {
           {industries.map((ind, i) => (
             <FlipCard key={ind.name} ind={ind} index={i} />
           ))}
+        </div>
+
+        {/* Dedicated industry pages — small aesthetic sector buttons */}
+        <div className="mt-10 text-center">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+            style={{ color: "rgba(224,136,60,0.6)" }}
+          >
+            Explore a dedicated industry page
+          </p>
+          <SectorButtons />
         </div>
 
         {/* Bottom CTA banner */}
