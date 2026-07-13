@@ -1,75 +1,95 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Dialog from "@/components/ui/Dialog";
+import { useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CalModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const CAL_URL = "https://cal.com/randy-mendez/ai-receptionist-discovery";
-
-// The embed + its fallback live in an inner component that only mounts while the
-// modal is open, so each open starts fresh (failed=false) with no
-// setState-in-effect reset and no render-time ref access — clean under the
-// React Compiler lint. Validation amendment 3: a visible fallback (direct
-// booking link + email) always works even when the iframe doesn't.
-function CalEmbed() {
-  const [failed, setFailed] = useState(false);
-  const loadedRef = useRef(false);
+export default function CalModal({ isOpen, onClose }: CalModalProps) {
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Fallback appears only from this async timer or the iframe onError —
-    // never a synchronous setState in the effect body.
-    const t = setTimeout(() => {
-      if (!loadedRef.current) setFailed(true);
-    }, 6000);
-    return () => clearTimeout(t);
-  }, []);
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isOpen, onClose]);
 
-  if (failed) {
-    return (
-      <div className="flex h-full flex-col items-center justify-center gap-4 px-6 text-center">
-        <p className="max-w-sm text-[var(--color-ink-secondary)]">
-          The calendar didn&rsquo;t load. You can still book in one click:
-        </p>
-        <a
-          href={CAL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-amber)] px-6 font-semibold text-white transition-colors hover:bg-[var(--color-amber-deep)]"
-        >
-          Open the booking page
-        </a>
-        <a
-          href="mailto:hello@inthepast.ai?subject=Discovery%20call"
-          className="text-sm font-medium text-[var(--color-amber-deep)] underline underline-offset-4"
-        >
-          Or email hello@inthepast.ai
-        </a>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   return (
-    <iframe
-      src={`${CAL_URL}?embed=true`}
-      title="Book a discovery call with In The Past AI"
-      className="h-full w-full border-0"
-      loading="eager"
-      onLoad={() => {
-        loadedRef.current = true;
-      }}
-      onError={() => setFailed(true)}
-    />
-  );
-}
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          ref={overlayRef}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4"
+          style={{ background: "rgba(10,7,4,0.85)", backdropFilter: "blur(8px)" }}
+          onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-3xl rounded-2xl overflow-hidden"
+            style={{
+              background: "#0E0B08",
+              border: "1px solid rgba(224,136,60,0.15)",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(224,136,60,0.08)",
+              height: "min(85vh, 700px)",
+            }}
+          >
+            <div
+              className="flex items-center justify-between px-6 py-4"
+              style={{ borderBottom: "1px solid rgba(224,136,60,0.1)" }}
+            >
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: "rgba(224,136,60,0.6)" }}>
+                  In The Past AI
+                </p>
+                <p className="text-sm font-semibold mt-0.5" style={{ color: "#f2ece0" }}>
+                  Book a Discovery Call
+                </p>
+              </div>
+              <button
+                onClick={onClose}
+                className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-150"
+                style={{ background: "rgba(224,136,60,0.08)", color: "#e0883c" }}
+                onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = "rgba(224,136,60,0.16)"}
+                onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = "rgba(224,136,60,0.08)"}
+                aria-label="Close"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
 
-export default function CalModal({ isOpen, onClose }: CalModalProps) {
-  return (
-    <Dialog isOpen={isOpen} onClose={onClose} title="Book a discovery call" labelId="booking-title">
-      <div className="relative h-[min(72vh,620px)]">{isOpen ? <CalEmbed /> : null}</div>
-    </Dialog>
+            <iframe
+              src="https://cal.com/randy-mendez/ai-receptionist-discovery?embed=true&theme=dark"
+              className="w-full"
+              style={{ height: "calc(100% - 61px)", border: "none" }}
+              title="Book a Discovery Call"
+              loading="eager"
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
