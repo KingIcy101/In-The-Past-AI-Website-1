@@ -6,12 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import VeraModal from "./VeraModal";
 
 const PHRASES = [
-  "I bet we can save you thousands a year...",
-  "How many calls did you miss this week?",
-  "Your competitors are already answering 24/7.",
-  "What if you never missed a lead again?",
-  "Ask Vera anything about your industry.",
-  "See what an AI receptionist sounds like.",
+  "Talk to a live AI receptionist.",
+  "Ask it anything a customer would.",
+  "Hear how it answers, right now.",
+  "It answers in English or Spanish.",
+  "No wait — it's live.",
 ];
 
 export default function VoiceWidget() {
@@ -61,10 +60,10 @@ export default function VoiceWidget() {
                   transition={{ duration: 0.25 }}
                   className="text-xs px-3 py-1.5 rounded-full"
                   style={{
-                    background: "rgba(36,24,14,0.96)",
-                    color: "#f2ece0",
-                    border: "1px solid rgba(224,136,60,0.25)",
-                    backdropFilter: "blur(8px)",
+                    background: "var(--color-canvas-raised)",
+                    color: "var(--color-ink)",
+                    border: "1px solid var(--color-hairline)",
+                    boxShadow: "var(--shadow-md)",
                     whiteSpace: "nowrap",
                   }}
                 >
@@ -81,9 +80,9 @@ export default function VoiceWidget() {
               aria-label="Talk to Vera"
               className="flex items-center gap-2.5 px-4 py-3 rounded-full text-sm font-semibold cursor-pointer"
               style={{
-                background: "linear-gradient(135deg, #f09040, #c05818, #8a3c14)",
-                color: "#0a0704",
-                boxShadow: "0 4px 20px rgba(224,136,60,0.38)",
+                background: "var(--color-amber)",
+                color: "#ffffff",
+                boxShadow: "var(--shadow-md)",
               }}
             >
               {/* Voice agent icon */}
