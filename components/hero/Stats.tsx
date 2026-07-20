@@ -8,10 +8,11 @@ export default function Stats() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
+  // Product-true tiles only — no third-party market statistics (claims policy).
   const stats = [
-    { number: '40%', label: 'of calls go unanswered', sublabel: 'across small businesses' },
-    { number: '$75B', label: 'lost annually', sublabel: 'from missed customer calls' },
-    { number: '85%', label: "won't call back", sublabel: 'after reaching voicemail' },
+    { number: '24/7', label: 'every call answered', sublabel: 'nights, weekends, holidays' },
+    { number: '< 4s', label: 'to pick up', sublabel: 'no hold music, no voicemail' },
+    { number: '100%', label: 'of calls logged', sublabel: 'summary + recording in your portal' },
   ];
 
   return (

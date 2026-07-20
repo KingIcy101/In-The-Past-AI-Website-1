@@ -123,7 +123,19 @@ export default function TrustSignals() {
 
         <div className="mt-12 text-center">
           <p className="text-sm" style={{ color: "#f2ece0" }}>
-            Across 250+ active deployments · Updated in real time
+            Across our active deployments · Updated in real time
+          </p>
+          <p className="text-sm mt-2" style={{ color: "#7a6e62" }}>
+            In The Past is an endorsed vertical of{" "}
+            <a
+              href="https://zerotoagent.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#D4944A", textDecoration: "none" }}
+            >
+              Zero to Agent
+            </a>
+            {" "}— the AI operations firm behind the front desk.
           </p>
         </div>
       </motion.div>

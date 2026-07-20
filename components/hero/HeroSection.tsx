@@ -39,9 +39,14 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 mb-6"
             >
               <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-accent text-sm font-medium">
-                Trusted by 200+ businesses
-              </span>
+              <a
+                href="https://zerotoagent.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent text-sm font-medium hover:underline"
+              >
+                In The Past · by Zero to Agent
+              </a>
             </motion.div>
 
             {/* Headline */}

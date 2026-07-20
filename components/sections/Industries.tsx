@@ -13,7 +13,7 @@ const industries = [
     Icon: IconTooth,
     name: "Dental Clinics",
     tagline: "Fill every chair. Miss no patient.",
-    desc: "AI handles appointment reminders, insurance queries, and new patient bookings around the clock. Cut no-shows by up to 40%.",
+    desc: "AI handles appointment reminders, insurance queries, and new patient bookings around the clock — with confirmations that fight no-shows.",
   },
   {
     Icon: IconScales,
@@ -284,11 +284,11 @@ export default function Industries() {
               className="text-2xl md:text-3xl font-bold mb-3 leading-snug"
               style={{ fontFamily: "var(--font-display)", color: "#f2ece0" }}
             >
-              We build voice agents for{" "}
-              <span className="gradient-amber">any industry.</span>
+              AI front desks for{" "}
+              <span className="gradient-amber">appointment-led businesses.</span>
             </p>
             <p className="text-base leading-relaxed" style={{ color: "#f2ece0", maxWidth: "52ch" }}>
-              Don&apos;t see yours above? We&apos;ve built for dozens of verticals. If your business runs on calls, we can automate it.
+              If your business lives and dies by inbound calls and booked appointments, this was built for you. And when you&apos;re ready for more than the phone — CRM, calendars, portals, workflow automation — Zero to Agent builds that too.
             </p>
           </div>
           <button

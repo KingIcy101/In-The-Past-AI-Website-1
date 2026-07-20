@@ -15,7 +15,7 @@ const FEATURES = [
     short: "Every call. Every hour.",
     desc: "Every inbound call answered in under 4 seconds — day, night, weekends, and holidays. Your AI receptionist never clocks out, never puts callers on hold, never has a bad day.",
     stat: "< 4s", statLabel: "avg answer time",
-    points: ["Zero missed calls, guaranteed", "No hold times — ever", "Consistent quality 24/7", "Instant call logging & recording"],
+    points: ["Zero missed calls, 24/7", "No hold times — ever", "Consistent quality around the clock", "Instant call logging & recording"],
   },
   {
     id: "02", Icon: IconTarget,

@@ -88,9 +88,9 @@ const INDUSTRIES = [
 ];
 
 const TRUST_STATS = [
-  { stat: "200+", label: "Calls handled for clients" },
+  { stat: "100%", label: "Calls logged with summaries" },
   { stat: "4–7",  label: "Day go-live" },
-  { stat: "24/7", label: "Uptime guaranteed" },
+  { stat: "24/7", label: "Always-on coverage" },
   { stat: "0",    label: "Long-term contracts" },
 ];
 

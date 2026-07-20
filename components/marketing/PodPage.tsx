@@ -16,6 +16,7 @@ const ACCENT: Record<PodSlug, { c: string; soft: string; line: string; glow: str
   dental:        { c: "#35BBA6", soft: "rgba(53,187,166,0.10)", line: "rgba(53,187,166,0.22)", glow: "rgba(53,187,166,0.22)", reads: "Clean, calm, clinical trust" },
   roofing:       { c: "#6E93C4", soft: "rgba(110,147,196,0.10)", line: "rgba(110,147,196,0.22)", glow: "rgba(110,147,196,0.22)", reads: "Solid, protective, storm-ready" },
   "med-spa":     { c: "#CE7DB8", soft: "rgba(206,125,184,0.10)", line: "rgba(206,125,184,0.22)", glow: "rgba(206,125,184,0.22)", reads: "Premium, discreet, aesthetic" },
+  law:           { c: "#C9A24E", soft: "rgba(201,162,78,0.10)", line: "rgba(201,162,78,0.22)", glow: "rgba(201,162,78,0.22)", reads: "Established, precise, trusted counsel" },
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;

@@ -68,7 +68,7 @@ export default function FinalCTA() {
             className="text-base md:text-lg max-w-xl mx-auto mb-12 leading-relaxed"
             style={{ color: "#f2ece0" }}
           >
-            Join 250+ businesses that never miss a call, never lose a lead,
+            Join the businesses that never miss a call, never lose a lead,
             and never stop booking — even while they sleep.
             <br />
             <span style={{ color: "#f2ece0" }}>Live within days. Built around your business.</span>

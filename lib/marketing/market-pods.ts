@@ -4,7 +4,7 @@
 // claim wording is governed by docs/knowledge/market-pods/claims-matrix.md.
 // Nothing here is a fabricated customer, count, metric, or live-integration claim.
 
-export type PodSlug = "auto-repair" | "hvac" | "dental" | "roofing" | "med-spa";
+export type PodSlug = "auto-repair" | "hvac" | "dental" | "roofing" | "med-spa" | "law";
 
 /** built = shipped today · offer = we build it for you (not a present-tense product). */
 export type WorkflowStatus = "built" | "offer";
@@ -24,7 +24,7 @@ export type MarketPod = {
   /** Full page/nav name. */
   name: string;
   /** Icon key resolved by components/ui/Icons via podIcon(). */
-  icon: "auto" | "hvac" | "dental" | "roofing" | "medspa";
+  icon: "auto" | "hvac" | "dental" | "roofing" | "medspa" | "law";
   /** One-line native pain shown beside the sector button on the homepage grid. */
   sectorPain: string;
   /** Page <title> / metadata. */
@@ -227,7 +227,8 @@ export const MARKET_PODS: Record<PodSlug, MarketPod> = {
         "Administrative only, by design: it never diagnoses, never quotes a coverage percentage or guarantees benefits, and keeps minimum-necessary messaging. HIPAA-ready, with a BAA executed at onboarding.",
     },
     workflows: [
-      { title: "Scheduling + confirmation queue", body: "Fill the schedule and cut no-shows with confirmations and reminders — the biggest, cheapest production recovery a practice has.", status: "built" },
+      { title: "Scheduling + confirmation queue", body: "Fill the schedule and reduce no-shows with confirmations and reminders — the biggest, cheapest production recovery a practice has.", status: "built" },
+      { title: "Beyond the phone — with Zero to Agent", body: "After the front desk is live: practice CRM, calendar and workflow integrations, patient portals, and office automation, scoped with Zero to Agent as you're ready.", status: "offer" },
       { title: "Insurance intake + verification handoff", body: "Structured capture of carrier, member ID, group, and subscriber — handed to your team for verification so the front desk isn't re-collecting it.", status: "offer" },
       { title: "Unscheduled-treatment follow-up", body: "Administrative outreach to rebook treatment a patient hasn't scheduled — never clinical persuasion.", status: "offer" },
       { title: "Recall / reactivation", body: "A follow-up workflow that calls overdue-hygiene patients back to rebook — real recurring revenue. Positioned as phase two.", status: "offer" },
@@ -349,6 +350,7 @@ export const MARKET_PODS: Record<PodSlug, MarketPod> = {
     workflows: [
       { title: "Consult-to-treatment conversion", body: "Qualify the high-value inquiry, book the consult, send the pre-visit intake link, and follow up so consults actually convert.", status: "offer" },
       { title: "Deposit-to-book + no-show recovery", body: "Enforce deposits on high-value slots and run confirmations and reminders — the single biggest protection against expensive no-shows.", status: "offer" },
+      { title: "Beyond the phone — with Zero to Agent", body: "After the front desk is live: client CRM, calendar and booking-system integrations, member portals, and studio automation, scoped with Zero to Agent as you're ready.", status: "offer" },
       { title: "Reactivation", body: "Follow-up outreach to lapsed clients to rebook touch-ups and recurring treatments — recurring revenue you never have time to chase.", status: "offer" },
       { title: "Membership & package handling", body: "Answer and route membership and package questions — core med-spa economics — and capture interest for your team to close.", status: "offer" },
       { title: "Owner revenue visibility", body: "An honest owner view — calls answered, consults booked, deposits pending, after-hours captured — with a later sync into your booking or EMR system.", status: "offer" },
@@ -366,10 +368,79 @@ export const MARKET_PODS: Record<PodSlug, MarketPod> = {
       { q: "Does it sound like a call center?", a: "No. It answers in a warm, discreet, boutique voice matched to your spa — never pushy, never body-shaming, in English or Spanish." },
     ],
   },
+
+  // ZTA-969 — law vertical. Compliance is the product: the page sells what the
+  // front desk REFUSES as much as what it does. Claims-safe: demo-led proof
+  // (live demo line), no fabricated clients or outcomes, no legal-advice or
+  // guaranteed-result language anywhere.
+  law: {
+    slug: "law",
+    label: "Law Firms",
+    name: "Law Firms & Legal Intake",
+    icon: "law",
+    sectorPain: "New matters dying in voicemail and after-hours panic calls",
+    metaTitle: "Law Firms & Legal Intake",
+    metaDescription:
+      "A compliance-first AI front desk for law firms: every call answered, new-client intake with conflict-check discipline, consultations booked with your posted fees, urgent matters escalated to a person — and it never gives legal advice.",
+    eyebrow: "Law firms & legal intake",
+    headline: "Every case starts with a call someone has to answer.",
+    lead:
+      "The call moment is a stressed person choosing a firm — at lunch, at 9 PM, the morning after an accident. In The Past answers instantly, runs a disciplined intake, books the consultation, and hands anything requiring legal judgment to your attorneys. It is a receptionist, never a lawyer.",
+    pains: [
+      {
+        title: "The intake call you never heard",
+        body: "Prospective clients call three firms and retain the one that answers. Voicemail after hours or during court is how new matters walk away.",
+      },
+      {
+        title: "Untrained answering is a liability",
+        body: "A message service that opines on cases, implies engagement, or collects the whole story before a conflict check creates real ethics exposure.",
+      },
+      {
+        title: "Urgent calls buried with routine ones",
+        body: "A court date next week, someone in custody, a deadline letter — these can't sit in a queue behind fee-shopping calls.",
+      },
+    ],
+    wedge: {
+      summary:
+        "A front desk built around legal-intake discipline: it answers every call, captures exactly what intake needs, books the right consultation at your posted fee, and escalates urgency to a human immediately.",
+      points: [
+        "Captures the caller, matter type, a one-line description, urgency — and the other party's full name FIRST, so your conflict check runs before the story is told",
+        "Books the right consultation with your posted fees stated confidently — and quotes nothing else; retainers and rates stay with the attorney",
+        "Urgent triage: custody/safety situations, anyone in custody, court dates or deadlines inside a week — warm-transferred to your on-call path, never voicemail",
+        "Existing clients get identity-verified message-taking — no case details on the phone, precise messages to the right paralegal or attorney",
+        "Opposing parties, opposing counsel, and adjusters get polite message-taking only — nothing discussed, ever",
+      ],
+      guardrail:
+        "It never gives legal advice, never assesses a case or predicts outcomes, never implies representation — engagement happens only after your conflict check and a signed engagement letter — and every judgment call is an explicit human handoff to your team.",
+    },
+    workflows: [
+      { title: "New-client intake + conflict-check capture", body: "Per-practice-area intake lanes that collect the minimum before conflicts clear: parties first, facts brief, consultation booked.", status: "built" },
+      { title: "Consultation booking with posted fees", body: "Free or paid consults by practice area, stated once and booked onto your calendar with confirmations and what-to-bring instructions.", status: "built" },
+      { title: "Urgent triage + after-hours escalation", body: "Custody, deadline, and in-custody calls skip the queue and reach your on-call attorney path any hour — with name, number, and the one-line situation captured.", status: "built" },
+      { title: "Existing-client message discipline", body: "Identity verified against the file before anything is acknowledged; precise messages routed to the handling attorney or paralegal with callback commitments.", status: "built" },
+      { title: "Beyond the phone — with Zero to Agent", body: "After the front desk is live: intake CRM, calendar and matter-workflow integrations, client portals, and office automation, scoped with Zero to Agent as you're ready.", status: "offer" },
+    ],
+    proof: {
+      kind: "demo-led",
+      lines: [
+        "Call the live law demo yourself: +1 571-702-9520 — ask it for legal advice and hear it decline; ask what a consultation costs and hear a straight answer.",
+        "Or have it call you: app.inthepast.ai/call-me — pick the law firm and answer your own phone.",
+        "The owner-side dashboard is public too: app.inthepast.ai/law — calls, bookings, and summaries for a fictional Arlington firm.",
+      ],
+    },
+    faqs: [
+      { q: "Will it give callers legal advice?", a: "No — by design. It never interprets documents, assesses cases, predicts outcomes, or calculates deadlines. Those questions are acknowledged warmly and routed to a consultation or, when urgent, to your attorneys." },
+      { q: "Can it imply we've taken someone's case?", a: "No. It explains that engagement happens only after a conflict check and a signed engagement letter, and booking a consultation is not representation." },
+      { q: "What fees will it quote?", a: "Only the consultation fees you post — nothing else. Hourly rates, retainers, and contingency terms are always 'discussed with the attorney at your consultation.'" },
+      { q: "How does it protect the conflict-check process?", a: "It captures the full name of every adverse party before collecting details, and keeps pre-engagement facts to the minimum needed to schedule — so your firm isn't exposed to a story it can't unhear." },
+      { q: "What happens on urgent calls?", a: "Anyone in custody, court dates or filing deadlines within days, and safety situations skip the queue: during hours a warm transfer to your team, after hours your on-call path — never voicemail. Emergencies are told to call 911 first." },
+      { q: "What can Zero to Agent build after the phone is handled?", a: "The front desk is the narrow start. From there, Zero to Agent can scope intake CRM, calendar and workflow integrations, client portals, and office automation — only when you're ready, and only what earns its keep." },
+    ],
+  },
 };
 
 /** Registry-order list of pods. */
-export const POD_ORDER: PodSlug[] = ["auto-repair", "hvac", "dental", "roofing", "med-spa"];
+export const POD_ORDER: PodSlug[] = ["auto-repair", "hvac", "dental", "roofing", "med-spa", "law"];
 
 export const POD_LIST: MarketPod[] = POD_ORDER.map((slug) => MARKET_PODS[slug]);
 

@@ -12,6 +12,7 @@ const DOT: Record<PodSlug, string> = {
   dental: "#35BBA6",
   roofing: "#6E93C4",
   "med-spa": "#CE7DB8",
+  law: "#C9A24E",
 };
 
 export default function SectorButtons({ className = "" }: { className?: string }) {

@@ -63,7 +63,7 @@ export default function FloatingNav() {
                   className="text-xs font-medium tracking-[0.12em] uppercase hidden sm:block"
                   style={{ color: "rgba(224,136,60,0.55)" }}
                 >
-                  Any Industry · Always On
+                  by Zero to Agent · Always On
                 </span>
               </div>
             </Link>

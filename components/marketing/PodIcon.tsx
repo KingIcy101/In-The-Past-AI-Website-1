@@ -71,12 +71,25 @@ export function MedSpaIcon({ size = 24, className }: Props) {
   ));
 }
 
+export function LawIcon({ size = 24, className }: Props) {
+  return svg(size, className, (
+    <>
+      <path d="M12 4v16" />
+      <path d="M7 20h10" />
+      <path d="M5 7h14" />
+      <path d="M7 7l-2.5 5a2.6 2.6 0 0 0 5 0L7 7z" />
+      <path d="M17 7l-2.5 5a2.6 2.6 0 0 0 5 0L17 7z" />
+    </>
+  ));
+}
+
 const MAP: Record<MarketPod["icon"], (p: Props) => React.ReactElement> = {
   auto: AutoIcon,
   hvac: HvacIcon,
   dental: DentalIcon,
   roofing: RoofingIcon,
   medspa: MedSpaIcon,
+  law: LawIcon,
 };
 
 export default function PodIcon({ icon, size = 24, className }: Props & { icon: MarketPod["icon"] }) {
