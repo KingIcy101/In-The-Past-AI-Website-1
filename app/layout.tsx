@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "In The Past AI | AI Receptionists That Never Sleep",
+  title: "In The Past AI | AI Front Desks — by Zero to Agent",
   description:
-    "24/7 AI receptionists that answer calls, book appointments, and capture leads. Voice agents, website chatbots, and internal automation — built for businesses that run on calls.",
+    "In The Past, by Zero to Agent: 24/7 AI front desks for appointment-led, call-dependent businesses — med spas, dental practices, law firms, auto repair, HVAC, and roofing. Every call answered, booked, and logged, with an explicit human handoff.",
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",

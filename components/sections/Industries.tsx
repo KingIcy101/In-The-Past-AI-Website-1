@@ -6,13 +6,14 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { IconTooth, IconScales, IconMedicalCross, IconHomeWrench, IconBuilding, IconCar } from "@/components/ui/Icons";
 import ScrollReveal3D from "@/components/ui/ScrollReveal3D";
+import SectorButtons from "@/components/marketing/SectorButtons";
 
 const industries = [
   {
     Icon: IconTooth,
     name: "Dental Clinics",
     tagline: "Fill every chair. Miss no patient.",
-    desc: "AI handles appointment reminders, insurance queries, and new patient bookings around the clock. Cut no-shows by up to 40%.",
+    desc: "AI handles appointment reminders, insurance queries, and new patient bookings around the clock — with confirmations that fight no-shows.",
   },
   {
     Icon: IconScales,
@@ -258,6 +259,17 @@ export default function Industries() {
           ))}
         </div>
 
+        {/* Dedicated industry pages — small aesthetic sector buttons */}
+        <div className="mt-10 text-center">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+            style={{ color: "rgba(224,136,60,0.6)" }}
+          >
+            Explore a dedicated industry page
+          </p>
+          <SectorButtons />
+        </div>
+
         {/* Bottom CTA banner */}
         <div
           className="mt-10 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8"
@@ -272,11 +284,11 @@ export default function Industries() {
               className="text-2xl md:text-3xl font-bold mb-3 leading-snug"
               style={{ fontFamily: "var(--font-display)", color: "#f2ece0" }}
             >
-              We build voice agents for{" "}
-              <span className="gradient-amber">any industry.</span>
+              AI front desks for{" "}
+              <span className="gradient-amber">appointment-led businesses.</span>
             </p>
             <p className="text-base leading-relaxed" style={{ color: "#f2ece0", maxWidth: "52ch" }}>
-              Don&apos;t see yours above? We&apos;ve built for dozens of verticals. If your business runs on calls, we can automate it.
+              If your business lives and dies by inbound calls and booked appointments, this was built for you. And when you&apos;re ready for more than the phone — CRM, calendars, portals, workflow automation — Zero to Agent builds that too.
             </p>
           </div>
           <button
